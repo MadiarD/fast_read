@@ -1,0 +1,726 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme FAQ CSS
+----------------------------------------*/
+.tj-faq-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    position: relative;
+    overflow: hidden;
+    @media #{$md, $sm, $xs} {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    .tj-sec-heading {
+        max-width: 610px;
+        margin: 0;
+        margin-bottom: 55px;
+        @media #{$md, $sm, $xs} {
+            margin-bottom: 75px;
+        }
+    }
+}
+
+.faq-page {
+    .tj-sec-heading {
+        max-width: 610px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 55px;
+        @media #{$md, $sm, $xs} {
+            margin-bottom: 75px;
+        }
+    }
+}
+
+.faq-section-shape {
+    .faq-bg-shape {
+        position: absolute;
+        top: 0;
+        right: 0;
+        @media #{$md, $sm, $xs} {
+            width: 50%;
+        }
+    }
+    .faq-bg-shape1 {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+.faq-image-group {
+    position: relative;
+    z-index: 3;
+    @media #{$md, $sm, $xs} {
+        margin-bottom: 100px;
+    }
+    @media #{$xs} {
+        margin-bottom: 180px;
+    }
+    .faq-image1 {
+        .group-image {
+            bottom: -10%;
+            position: absolute;
+            right: 15%;
+            z-index: 3;
+            max-width: 385px;
+            @media #{$xl} {
+                right: 10%;
+            }
+            @media #{$lg} {
+                max-width: 280px;
+                right: 10%;
+                bottom: -10%;
+            }
+            @media #{$md} {
+                right: 25%;
+                bottom: -5%;
+            }
+            @media #{$sm} {
+                bottom: -12%;
+                right: 25%;
+                max-width: 260px;
+            }
+            @media #{$xs} {
+                bottom: -20%;
+                right: 12%;
+                max-width: 230px;
+            }
+            &::before {
+                position: absolute;
+                content: "";
+                top: 53.5%;
+                left: 57%;
+                width: 100%;
+                transform: translate(-50%, -50%);
+                height: 100%;
+                background: url(../images/icon/border-shape2.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                z-index: -1;
+            }
+            img {
+                border-radius: 50%;
+                padding: 40px;
+                max-width: 390px;
+                width: 100%;
+                @media #{$xl} {
+                    max-width: 330px;
+                }
+                @media #{$lg} {
+                    max-width: 280px;
+                    padding: 35px;
+                }
+                @media #{$md, $sm} {
+                    max-width: 300px;
+                    padding: 35px;
+                }
+                @media #{$xs} {
+                    max-width: 230px;
+                    padding: 30px;
+                }
+            }
+        }
+        .group-shape {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            @media #{$xl} {
+                top: 45px;
+            }
+            @media #{$lg, $md, $sm, $xs} {
+                display: none;
+            }
+        }
+        .group-shape1 {
+            position: absolute;
+            top: -25px;
+            left: 45%;
+            @media #{$xl} {
+                top: 45px;
+            }
+            @media #{$lg, $md, $sm, $xs} {
+                display: none;
+            }
+        }
+        .group-shape2 {
+            position: absolute;
+            right: 7%;
+            top: 10%;
+            border: 1px solid var(--tj-color-theme-primary);
+            border-radius: 50%;
+            padding: 7px;
+            max-width: 100px;
+            width: 100%;
+            @media #{$xl} {
+                right: 5%;
+                top: 12%;
+            }
+            @media #{$lg} {
+                top: 6%;
+            }
+            @media #{$md} {
+                right: 15%;
+            }
+            @media #{$sm} {
+                right: 12%;
+                top: 0;
+            }
+            @media #{$xs} {
+                right: 6%;
+                top: -6%;
+            }
+        }
+    }
+    .faq-image2 {
+        position: relative;
+        .group-image {
+            left: 10px;
+            bottom: -50px;
+            position: relative;
+            z-index: 3;
+            max-width: 180px;
+            width: 100%;
+            @media #{$xl} {
+                left: 0;
+            }
+            @media #{$lg} {
+                max-width: 140px;
+                left: 5px;
+            }
+            @media #{$md} {
+                max-width: 140px;
+                left: 16%;
+            }
+            @media #{$sm} {
+                max-width: 125px;
+                left: 4%;
+            }
+            @media #{$xs} {
+                max-width: 120px;
+                bottom: -120px;
+            }
+            img {
+                border: 1px solid var(--tj-color-theme-primary);
+                border-radius: 50%;
+                padding: 10px;
+            }
+        }
+        .group-shape {
+            position: absolute;
+            top: 0;
+            left: 35px;
+            @media #{$lg, $md, $sm, $xs} {
+                display: none;
+            }
+        }
+        .group-shape1 {
+            position: absolute;
+            top: 25px;
+            left: -15px;
+            @media #{$lg, $md, $sm, $xs} {
+                display: none;
+            }
+        }
+    }
+    .faq-image3 {
+        position: relative;
+        top: -50px;
+        left: -15px;
+        max-width: 210px;
+        @media #{$xl, $lg} {
+            left: 20px;
+            top: -65px;
+        }
+        @media #{$md, $sm} {
+            top: -20px;
+            left: 50px;
+            max-width: 180px;
+        }
+        @media #{$sm, $xs} {
+            top: -35px;
+            left: 30px;
+            max-width: 130px;
+        }
+        img {
+            border: 1px solid var(--tj-color-theme-secondary);
+            border-radius: 50%;
+            padding: 10px;
+        }
+    }
+}
+
+.tj-faq-area {
+    padding-left: 40px;
+    position: relative;
+    @media #{$xl, $lg, $md, $sm, $xs} {
+        padding-left: 0;
+    }
+    .tj-faq-style {
+        border: 1px solid var(--tj-color-theme-secondary);
+        box-shadow: 60px 15px 68px 0px rgba(0, 0, 0, 0.05);
+        background: var(--tj-color-common-white);
+        border-radius: 20px;
+        padding: 50px 60px;
+        position: relative;
+        z-index: 3;
+        @media #{$xl, $lg, $md, $sm, $xs} {
+            padding: 25px 35px;
+        }
+        @media #{$xs} {
+            padding: 20px 15px;
+        }
+        .accordion-item {
+            border: none;
+            border-radius: 5px;
+            box-shadow: none;
+            position: relative;
+            z-index: 9;
+            border-bottom: 1px solid var(--tj-color-grey-4);
+            border-radius: 0;
+            &:last-child {
+                border-bottom: none;
+            }
+            .accordion-header {
+                line-height: 35px;
+                .accordion-button {
+                    font-size: 22px;
+                    font-family: var(--tj-ff-heading);
+                    font-weight: var(--tj-fw-sbold);
+                    padding: 20px 35px 20px 0;
+                    background-color: transparent;
+                    position: relative;
+                    background: linear-gradient(
+                        90deg,
+                        var(--tj-color-theme-secondary) 0%,
+                        var(--tj-color-theme-primary) 100%
+                    );
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    color: transparent;
+                    &.collapsed {
+                        color: var(--tj-color-common-black);
+                    }
+                    &:before {
+                        position: absolute;
+                        top: 30px;
+                        right: 0;
+                        content: "\f107";
+                        font-family: "Font Awesome 6 Pro";
+                        font-weight: 400;
+                        width: 20px;
+                        height: 20px;
+                        font-size: 15px;
+                        color: var(--tj-color-common-white);
+                        line-height: 22px;
+                        text-align: center;
+                        border-radius: 50%;
+                        background: var(--tj-color-common-black);
+                        transition: 0.4s;
+                    }
+
+                    &:not(.collapsed) {
+                        box-shadow: none;
+                        &:before {
+                            transform: rotate(-180deg);
+                            color: var(--tj-color-common-white);
+                            background: linear-gradient(
+                                90deg,
+                                var(--tj-color-theme-secondary) 0%,
+                                var(--tj-color-theme-primary) 100%
+                            );
+                        }
+                    }
+                    &:focus {
+                        box-shadow: none;
+                    }
+                    &:after {
+                        display: none;
+                    }
+                    @media #{$lg, $md, $sm} {
+                        font-size: 20px;
+                    }
+                    @media #{$xs} {
+                        font-size: 18px;
+                        line-height: 1.5;
+                    }
+                }
+            }
+            .accordion-body {
+                padding-left: 0;
+                padding: 0 0 20px 0;
+                max-width: 460px;
+                strong {
+                    font-size: 16px;
+                    font-weight: 400;
+                    color: var(--tj-color-text-body);
+                }
+            }
+        }
+    }
+    .accordion-shape {
+        position: absolute;
+        top: -38%;
+        right: -10%;
+        @media #{$xl, $lg, $md, $sm, $xs} {
+            display: none;
+        }
+    }
+}
+
+.tj-faq-section-two {
+    padding-top: 120px;
+    padding-bottom: 100px;
+    overflow: hidden;
+    position: relative;
+    @media #{$md, $sm, $xs} {
+        padding-bottom: 60px;
+        padding-top: 80px;
+    }
+    .tj-sec-heading {
+        max-width: 600px;
+        margin-left: 0;
+    }
+}
+
+.faq-group-shape {
+    opacity: 0.2;
+    @media #{$xs} {
+        display: none;
+    }
+    .bg-shape-one {
+        position: absolute;
+        top: -60px;
+        right: -60px;
+    }
+    .bg-shape-two {
+        position: absolute;
+        top: -65px;
+        right: -55px;
+    }
+    .bg-shape-three {
+        position: absolute;
+        top: -65px;
+        right: -40px;
+    }
+    .bg-shape-four {
+        position: absolute;
+        top: -65px;
+        right: 5px;
+    }
+    .bg-shape-five {
+        position: absolute;
+        top: -65px;
+        right: 5px;
+    }
+}
+
+.faq-group-image {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media #{$md, $sm, $xs} {
+        max-width: 570px;
+        margin-bottom: 180px;
+    }
+    .group-image-one {
+        position: relative;
+        margin-right: 30px;
+        max-width: 335px;
+        width: 100%;
+        @media #{$xl} {
+            max-width: 200px;
+            margin-right: 0;
+            right: -35px;
+        }
+        @media #{$lg} {
+            max-width: 200px;
+            margin-right: 0;
+            left: 20px;
+        }
+        @media #{$md} {
+            margin-right: 0;
+            left: 20px;
+            max-width: 250px;
+        }
+        @media #{$sm} {
+            max-width: 200px;
+            margin-right: 0;
+            left: 20px;
+        }
+        @media #{$xs} {
+            max-width: 150px;
+            margin-right: 0;
+            left: 20px;
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            top: -15px;
+            left: -18px;
+            width: 335px;
+            height: 377px;
+            background: var(--tj-color-light-7);
+            z-index: 2;
+            border-radius: 0 0 200px 200px;
+            @media #{$xl} {
+                width: 218px;
+                height: 260px;
+            }
+            @media #{$lg} {
+                width: 218px;
+                height: 250px;
+            }
+            @media #{$md} {
+                width: 268px;
+                height: 310px;
+            }
+            @media #{$sm} {
+                width: 218px;
+                height: 260px;
+            }
+            @media #{$xs} {
+                width: 168px;
+                height: 195px;
+            }
+        }
+        .lg-image {
+            border-radius: 0 0 200px 200px;
+            position: relative;
+            z-index: 3;
+        }
+    }
+    .shape-1 {
+        position: absolute;
+        bottom: -10px;
+        left: -60px;
+    }
+    .shape-2 {
+        position: absolute;
+        bottom: -45px;
+        left: -30px;
+    }
+    .group-image-two {
+        position: relative;
+        .shape-1 {
+            position: absolute;
+            top: -70px;
+            left: 20%;
+            transform: translateX(-50%);
+            z-index: -1;
+            @media #{$lg, $md, $sm, $xs} {
+                left: 10%;
+            }
+            @media #{$xs} {
+                max-width: 100px;
+            }
+        }
+        .shape-2 {
+            position: absolute;
+            top: -110px;
+            left: 20%;
+            transform: translateX(-50%);
+            z-index: -1;
+            @media #{$lg, $md, $sm, $xs} {
+                left: 10%;
+            }
+            @media #{$xs} {
+                max-width: 75px;
+                top: -80px;
+            }
+        }
+    }
+}
+.group-image-two {
+    position: relative;
+    top: 110px;
+    max-width: 325px;
+    .lg-image {
+        border-radius: 200px 200px 0 0;
+    }
+    @media #{$xl} {
+        max-width: 250px;
+    }
+    @media #{$lg} {
+        max-width: 200px;
+    }
+    @media #{$md, $sm} {
+        max-width: 250px;
+    }
+    @media #{$xs} {
+        max-width: 150px;
+        right: 15px;
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        top: -10px;
+        left: -20px;
+        width: 291px;
+        height: 380px;
+        background: var(--tj-color-light-7);
+        z-index: -1;
+        border-radius: 200px 200px 0 0;
+        @media #{$xl} {
+            width: 270px;
+            height: 355px;
+        }
+        @media #{$lg} {
+            width: 220px;
+            height: 290px;
+        }
+        @media #{$md, $sm} {
+            width: 270px;
+            height: 355px;
+        }
+        @media #{$xs} {
+            left: -15px;
+            width: 165px;
+            height: 220px;
+        }
+        .shape-1 {
+            position: absolute;
+            top: -70px;
+            left: 40%;
+            transform: translateX(-50%);
+            z-index: -1;
+            @media #{$xs} {
+                display: none;
+            }
+        }
+        .shape-2 {
+            position: absolute;
+            top: -110px;
+            left: 25%;
+            transform: translateX(-50%);
+            z-index: -1;
+            @media #{$sm} {
+                top: -80px;
+                left: 35%;
+            }
+            @media #{$xs} {
+                display: none;
+            }
+        }
+    }
+}
+
+.tj-faq-style-two {
+    padding-left: 50px;
+    position: relative;
+    @media #{$lg} {
+        padding-left: 25px;
+    }
+    @media #{$md, $sm, $xs} {
+        padding-left: 0;
+    }
+    .tj-faq-style {
+        position: relative;
+        z-index: 3;
+        .accordion-item {
+            box-shadow: none;
+            position: relative;
+            z-index: 9;
+            padding: 0;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 20px 20px 20px 0;
+            padding: 0 30px;
+            &.active {
+                box-shadow: 10px 15px 30px 0px rgba(0, 0, 0, 0.08);
+                background: var(--tj-color-light-2);
+                border-color: var(--tj-color-theme-primary);
+                padding: 25px 30px;
+                margin-bottom: 30px;
+                @media #{$md, $sm, $xs} {
+                    padding: 20px 20px;
+                }
+            }
+            .accordion-header {
+                line-height: 35px;
+                .accordion-button {
+                    font-size: 22px;
+                    font-family: var(--tj-ff-heading);
+                    font-weight: var(--tj-fw-sbold);
+                    padding: 0 35px 20px 45px;
+                    background-color: transparent;
+                    position: relative;
+                    background: linear-gradient(
+                        90deg,
+                        var(--tj-color-theme-secondary) 0%,
+                        var(--tj-color-theme-primary) 100%
+                    );
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    color: transparent;
+                    &.collapsed {
+                        color: var(--tj-color-common-black);
+                    }
+                    &:not(.collapsed) {
+                        box-shadow: none;
+                        &:before {
+                            position: absolute;
+                            content: "";
+                            top: 10px;
+                            right: -95%;
+                            background: url(../images/icon/faq.svg);
+                            background-repeat: no-repeat;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    &:focus {
+                        box-shadow: none;
+                    }
+                    &:after {
+                        display: none;
+                    }
+                    span {
+                        -webkit-text-fill-color: var(--tj-color-common-white);
+                        -webkit-text-stroke: 1px var(--tj-color-common-black);
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        font-weight: var(--tj-fw-bold);
+                    }
+                    @media #{$lg, $md, $sm, $xs} {
+                        font-size: 19px;
+                        line-height: 1.5;
+                    }
+                }
+            }
+            .accordion-body {
+                padding: 0;
+                max-width: 460px;
+                strong {
+                    font-size: 16px;
+                    font-weight: 400;
+                    color: var(--tj-color-text-body);
+                }
+            }
+        }
+    }
+    .accordion-shape {
+        position: absolute;
+        top: 50%;
+        right: -30%;
+        transform: translateX(-50%);
+        @media #{$xxl, $xl, $lg, $md, $sm, $xs} {
+            display: none;
+        }
+    }
+    .accordion-shape1 {
+        position: absolute;
+        top: 45%;
+        right: -40%;
+        transform: translateX(-50%);
+        @media #{$xxl, $xl, $lg, $md, $sm, $xs} {
+            display: none;
+        }
+    }
+}
+
+/* !END: Theme FAQ CSS */

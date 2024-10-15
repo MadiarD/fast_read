@@ -1,0 +1,189 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Animation CSS
+----------------------------------------*/
+// circle animation
+@keyframes rotateImg {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.shake-y {
+    -webkit-animation: shakeY 2.5s ease-in-out infinite;
+    animation: shakeY 2.5s ease-in-out infinite;
+}
+@-webkit-keyframes shakeY {
+    0% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px);
+    }
+    50% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+    100% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px);
+    }
+}
+
+@keyframes shakeY {
+    0% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px);
+    }
+    50% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+    100% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px);
+    }
+}
+
+.pulse {
+    -webkit-animation: pulse 2.5s ease-in-out infinite;
+    animation: pulse 2.5s ease-in-out infinite;
+}
+
+@-webkit-keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.skew-spin {
+    -webkit-animation: skewSpin 5s linear infinite;
+    animation: skewSpin 5s linear infinite;
+}
+@-webkit-keyframes skewSpin {
+    0% {
+        -webkit-transform: skewX(-10deg) skewY(-15deg) rotateY(-40deg) rotate(0);
+        transform: skewX(-10deg) skewY(-15deg) rotateY(-40deg) rotate(0);
+    }
+    100% {
+        -webkit-transform: skewX(-10deg) skewY(-15deg) rotateY(-40deg) rotate(360deg);
+        transform: skewX(-10deg) skewY(-15deg) rotateY(-40deg) rotate(360deg);
+    }
+}
+@keyframes skewSpin {
+    0% {
+        -webkit-transform: skewX(-10deg) skewY(-15deg) rotateY(-40deg) rotate(0);
+        transform: skewX(-10deg) skewY(-15deg) rotateY(-40deg) rotate(0);
+    }
+    100% {
+        -webkit-transform: skewX(-10deg) skewY(-15deg) rotateY(-40deg) rotate(360deg);
+        transform: skewX(-10deg) skewY(-15deg) rotateY(-40deg) rotate(360deg);
+    }
+}
+
+.left-right-rotate {
+    animation: rotated-style3 2s infinite alternate;
+}
+@keyframes rotated-style3 {
+    0% {
+        transform: rotate(-10deg);
+        -webkit-transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(10deg);
+        -webkit-transform: rotate(10deg);
+    }
+}
+
+@-webkit-keyframes criss-cross-left {
+    0% {
+        left: -20px;
+    }
+    50% {
+        left: 50%;
+        width: 20px;
+        height: 20px;
+    }
+    100% {
+        left: 50%;
+        width: 375px;
+        height: 375px;
+    }
+}
+
+@keyframes criss-cross-left {
+    0% {
+        left: -20px;
+    }
+    50% {
+        left: 50%;
+        width: 20px;
+        height: 20px;
+    }
+    100% {
+        left: 50%;
+        width: 375px;
+        height: 375px;
+    }
+}
+@-webkit-keyframes criss-cross-right {
+    0% {
+        right: -20px;
+    }
+    50% {
+        right: 50%;
+        width: 20px;
+        height: 20px;
+    }
+    100% {
+        right: 50%;
+        width: 375px;
+        height: 375px;
+    }
+}
+@keyframes criss-cross-right {
+    0% {
+        right: -20px;
+    }
+    50% {
+        right: 50%;
+        width: 20px;
+        height: 20px;
+    }
+    100% {
+        right: 50%;
+        width: 375px;
+        height: 375px;
+    }
+}
+
+/* !END: Theme Animation CSS */

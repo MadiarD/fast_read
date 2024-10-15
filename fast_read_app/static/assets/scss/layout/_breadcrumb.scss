@@ -1,0 +1,182 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Breadcrumb CSS
+----------------------------------------*/
+.breadcrumb-wrapper {
+    padding-top: 210px;
+    padding-bottom: 140px;
+    background-image: url(../images/banner-bg/banner.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: linear-gradient(181deg, var(--tj-color-grey-7) 2.29%, rgba(40, 40, 40, 0.7) 89.63%);
+    position: relative;
+    @media #{$xl, $lg} {
+        padding-top: 160px;
+        padding-bottom: 90px;
+    }
+    @media #{$md} {
+        padding-top: 150px;
+        padding-bottom: 80px;
+    }
+    @media #{$sm, $xs} {
+        padding-top: 130px;
+        padding-bottom: 60px;
+    }
+}
+.tj-breadcrumb-shape {
+    .breadcrumb-shape-one {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        @media #{$sm, $xs} {
+            width: 50%;
+        }
+    }
+    .breadcrumb-shape-two {
+        position: absolute;
+        top: 0;
+        right: 0;
+        @media #{$sm, $xs} {
+            width: 50%;
+        }
+    }
+    .breadcrumb-shape-1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.2;
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+    }
+    .breadcrumb-shape-2 {
+        position: absolute;
+        left: 8%;
+        top: 15%;
+        opacity: 0.2;
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+    }
+    .breadcrumb-shape-3 {
+        position: absolute;
+        left: 8%;
+        top: 25%;
+        opacity: 0.2;
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+    }
+    .breadcrumb-shape-4 {
+        position: absolute;
+        transform: translateX(-50%);
+        left: 42%;
+        bottom: 30px;
+        opacity: 0.2;
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+    }
+    .breadcrumb-shape-5 {
+        position: absolute;
+        transform: translateX(-50%);
+        left: 36%;
+        bottom: 50px;
+        opacity: 0.2;
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+    }
+    .breadcrumb-shape-6 {
+        position: absolute;
+        right: 20%;
+        bottom: 80px;
+        opacity: 0.6;
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+    }
+    .breadcrumb-shape-7 {
+        position: absolute;
+        right: 80px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.2;
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+    }
+    .breadcrumb-shape-8 {
+        position: absolute;
+        right: 80px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.2;
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+    }
+}
+.breadcrumb-content-area {
+    position: relative;
+    z-index: 9;
+    .breadcrumb-heading {
+        margin-bottom: 35px;
+        @media #{$md, $sm, $xs} {
+            margin-bottom: 10px;
+        }
+        .breadcrumb-title {
+            color: var(--tj-color-common-white);
+            @media #{$md, $sm} {
+                font-size: 50px;
+            }
+            @media #{$xs} {
+                font-size: 38px;
+            }
+        }
+    }
+    .breadcrumb-link {
+        span {
+            color: var(--tj-color-common-white);
+            font-size: 16px;
+            font-weight: var(--tj-fw-sbold);
+            font-family: var(--tj-ff-body);
+        }
+        i {
+            color: var(--tj-color-common-white);
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 20px;
+            position: relative;
+            top: 3px;
+            font-weight: var(--tj-fw-sbold);
+        }
+        a {
+            span {
+                color: var(--tj-color-common-white);
+                transition: 0.4s;
+                position: relative;
+                font-weight: var(--tj-fw-sbold);
+                font-family: var(--tj-ff-body);
+                &::before {
+                    position: absolute;
+                    content: "";
+                    width: 0;
+                    height: 1px;
+                    bottom: 0;
+                    left: 0;
+                    background: var(--tj-color-common-white);
+                }
+                &:hover {
+                    &::before {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+/* !END: Breadcrumb CSS */

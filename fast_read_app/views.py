@@ -8,7 +8,7 @@ from .read_request_handler import read_request_handler
 
 
 class HomePageView(TemplateView):
-    template_name = 'index.html'
+    template_name = 'fast-read.html'
 
     def post(self, request, *args, **kwargs):
         try:

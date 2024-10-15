@@ -1,0 +1,112 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Preloder CSS
+----------------------------------------*/
+/***********************************
+PAGE LOAD ANIMATION
+***********************************/
+.preloader {
+	background: var(--tj-color-grey-2);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10000;
+	text-align: center;
+	.tj-cancel-btn {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+	}
+	.preloader-inner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		.lines {
+			height: 25px;
+			.line {
+				width: 1px;
+				height: 20px;
+				background: #fff;
+				margin: 0 2px;
+				display: inline-block;
+				animation: opacity-2 1000ms infinite ease-in-out;
+				background: linear-gradient(
+					180deg,
+					var(--tj-color-theme-secondary) 0%,
+					var(--tj-color-theme-primary) 100%
+				);
+			}
+			.line-1 {
+				animation-delay: 800ms;
+			}
+			.line-2 {
+				animation-delay: 600ms;
+			}
+			.line-3 {
+				animation-delay: 400ms;
+			}
+			.line-4 {
+				animation-delay: 200ms;
+			}
+			.line-6 {
+				animation-delay: 200ms;
+			}
+			.line-7 {
+				animation-delay: 400ms;
+			}
+			.line-8 {
+				animation-delay: 600ms;
+			}
+			.line-9 {
+				animation-delay: 800ms;
+			}
+		}
+		.text {
+			background: linear-gradient(
+				90deg,
+				var(--tj-color-theme-secondary) 0%,
+				var(--tj-color-theme-primary) 100%
+			);
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			letter-spacing: 3.5px;
+			display: inline-block;
+			line-height: 1.2;
+			font-size: 12px;
+		}
+	}
+}
+
+@keyframes opacity-1 {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes opacity-2 {
+	0% {
+		opacity: 1;
+		height: 25px;
+	}
+	50% {
+		opacity: 0;
+		height: 20px;
+	}
+	100% {
+		opacity: 1;
+		height: 25px;
+	}
+}
+
+/* !END: Preloder CSS */

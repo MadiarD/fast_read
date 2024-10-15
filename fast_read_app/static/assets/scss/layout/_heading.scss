@@ -1,0 +1,86 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Heading CSS
+----------------------------------------*/
+.tj-sec-heading {
+    margin-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 3;
+    @media #{$md, $sm, $xs} {
+        margin-bottom: 35px;
+    }
+    .sub-title {
+        background: linear-gradient(90deg, var(--tj-color-theme-secondary) 0%, var(--tj-color-theme-primary) 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 35px;
+        font-family: var(--tj-ff-heading2);
+        letter-spacing: 3.5px;
+        font-weight: var(--tj-fw-regular);
+        display: inline-block;
+        margin-bottom: 10px;
+        line-height: 1.2;
+        &.secondary-color {
+            color: var(--tj-color-theme-secondary);
+        }
+        @media #{$md, $sm, $xs} {
+            font-size: 30px;
+        }
+    }
+    .white-sub-title {
+        color: var(--tj-color-common-white);
+        font-size: 35px;
+        font-family: var(--tj-ff-heading2);
+        letter-spacing: 3.5px;
+        font-weight: var(--tj-fw-regular);
+        margin-bottom: 20px;
+        line-height: 1.2;
+        display: inline-block;
+        @media #{$md, $sm, $xs} {
+            font-size: 30px;
+        }
+    }
+    .active-color {
+        background: linear-gradient(90deg, var(--tj-color-theme-secondary) 0%, var(--tj-color-theme-primary) 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .sec-title {
+        margin-bottom: 30px;
+        @media #{$md} {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        @media #{$sm, $xs} {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+    }
+    .black-color {
+        color: var(--tj-color-common-black);
+    }
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.secondary-color {
+    font-size: 35px;
+    font-family: var(--tj-ff-heading2);
+    letter-spacing: 3.5px;
+    font-weight: var(--tj-fw-regular);
+    display: inline-block;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    color: var(--tj-color-theme-primary);
+    @media #{$md, $sm, $xs} {
+        font-size: 30px;
+    }
+}
+
+/* !END: Theme Heading CSS */

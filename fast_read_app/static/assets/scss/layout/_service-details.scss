@@ -1,0 +1,197 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Service CSS
+----------------------------------------*/
+.tj-service-details {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    position: relative;
+    overflow: hidden;
+    @media #{$md, $sm, $xs} {
+        padding-top: 80px;
+        padding-bottom: 55px;
+    }
+    .tj-services-shape {
+        .shape-one {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        .shape-two {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+    }
+}
+
+@media #{$md, $sm, $xs} {
+    .tj-main-sidebar {
+        margin-top: 60px;
+    }
+}
+
+.service-inner {
+    padding-bottom: 45px;
+    @media #{$md, $sm, $xs} {
+        padding-bottom: 15px;
+    }
+    .tj-service-item {
+        margin-bottom: 80px;
+    }
+}
+
+.service-wrapper {
+    .services-item {
+        padding-top: 45px;
+        margin-bottom: 30px;
+        p {
+            margin-bottom: 0;
+        }
+    }
+    .service-details-item {
+        background: var(--tj-color-light-2);
+        border-radius: 20px;
+        padding: 0 30px 30px;
+        margin-bottom: 20px;
+        @media #{$md, $sm, $xs} {
+            padding: 0 20px 20px;
+        }
+        @media #{$xs} {
+            margin-bottom: 70px;
+        }
+        .service-icon {
+            background: var(--tj-color-light-7);
+            width: 70px;
+            height: 70px;
+            line-height: 76px;
+            text-align: center;
+            display: inline-block;
+            border-radius: 10px;
+            margin-top: -35px;
+            margin-bottom: 30px;
+            transition: 0.4s;
+            transform: rotate(0);
+            i {
+                font-size: 30px;
+                color: var(--tj-color-light-3);
+            }
+        }
+        .service-content {
+            .title {
+                margin-bottom: 15px;
+            }
+            p {
+                margin-bottom: 0;
+            }
+        }
+        &:hover {
+            .service-icon {
+                transform: rotate(-360deg);
+            }
+        }
+    }
+    .blog-video-area {
+        @media #{$sm, $xs} {
+            .video-image {
+                margin-bottom: 30px;
+            }
+        }
+        .video-content {
+            .check-list {
+                ul {
+                    li {
+                        font-weight: var(--tj-fw-bold);
+                    }
+                }
+            }
+        }
+    }
+    .tj-faq-area {
+        padding-left: 0;
+    }
+}
+
+.tj-services-widget {
+    background: linear-gradient(90deg, rgba(32, 217, 161, 0.08) 0%, rgba(95, 57, 255, 0.08) 100%);
+    margin-bottom: 24px;
+    border-radius: 10px;
+    padding: 40px;
+    @media #{$md, $sm, $xs} {
+        padding: 35px 15px;
+    }
+    .side-title {
+        font-size: 25px;
+        color: var(--tj-color-light-3);
+        position: relative;
+        margin-bottom: 35px;
+        &::before {
+            position: absolute;
+            content: "";
+            bottom: -10px;
+            left: 0;
+            width: 90px;
+            height: 3px;
+            background: var(--tj-color-light-3);
+        }
+    }
+}
+
+.sidebar-contact {
+    position: relative;
+    .contact-icon {
+        width: 70px;
+        height: 70px;
+        line-height: 65px;
+        text-align: center;
+        display: inline-block;
+        border-radius: 50%;
+        border: 1px solid var(--tj-color-light-3);
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 3;
+        img {
+            max-width: 38px;
+            width: 100%;
+        }
+    }
+    .contact-link {
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 3;
+        a {
+            font-size: 35px;
+            font-weight: var(--tj-fw-bold);
+            color: var(--tj-color-light-3);
+            transition: 0.4s;
+            &:hover {
+                color: var(--tj-color-common-black);
+            }
+            @media #{$lg, $md, $sm, $xs} {
+                font-size: 25px;
+            }
+        }
+    }
+    span {
+        font-size: 18px;
+        font-weight: var(--tj-fw-medium);
+        position: relative;
+        z-index: 3;
+        @media #{$md, $sm, $xs} {
+            font-size: 16px;
+        }
+    }
+    .contact-shape {
+        position: absolute;
+        bottom: -40px;
+        left: -40px;
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+    }
+}
+/* !END: Theme Service CSS */
