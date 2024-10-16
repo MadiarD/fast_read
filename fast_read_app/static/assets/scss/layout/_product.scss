@@ -1,0 +1,384 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Product CSS
+----------------------------------------*/
+.tj-product-section {
+    background: var(--tj-color-grey-5);
+    padding-top: 130px;
+    padding-bottom: 120px;
+    @media #{$md, $sm, $xs} {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    .tj-sec-heading {
+        max-width: 550px;
+        margin-left: 0;
+    }
+}
+
+.product-left-content {
+    padding-right: 30px;
+    @media #{$md, $sm, $xs} {
+        padding-right: 0;
+        margin-bottom: 110px;
+    }
+    @media #{$xs} {
+        padding-right: 0;
+        margin-bottom: 140px;
+    }
+}
+
+.tj-product-item {
+    display: flex;
+    padding: 40px;
+    border: 1px solid var(--tj-color-theme-primary);
+    border-radius: 20px;
+    margin-bottom: 25px;
+    border: 1px solid transparent;
+    transition: 0.4s;
+    @media #{$lg, $md, $sm, $xs} {
+        padding: 25px;
+    }
+    @media #{$xs} {
+        display: block;
+        border: 1px solid var(--tj-color-theme-primary);
+        margin-bottom: 30px;
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
+    .product-icon {
+        margin-right: 40px;
+        font-size: 50px;
+        color: var(--tj-color-light-3);
+        background: linear-gradient(90deg, var(--tj-color-theme-secondary) 0%, var(--tj-color-theme-primary) 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        line-height: 1;
+        display: inline-block;
+        @media #{$lg, $md, $sm, $xs} {
+            margin-right: 20px;
+        }
+        @media #{$xs} {
+            margin-right: 0;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--tj-color-theme-secondary) 0%, var(--tj-color-theme-primary) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+    .skillbar {
+        background-image: linear-gradient(
+            to right,
+            var(--tj-color-theme-primary) 0%,
+            var(--tj-color-theme-primary) 51%,
+            var(--tj-color-theme-secondary) 100%
+        );
+        width: 0px;
+        height: 10px;
+        border-radius: 20px;
+        transition: 0.6s;
+        background-size: 200%;
+        @media #{$xs} {
+            background: linear-gradient(90deg, var(--tj-color-theme-secondary) 0%, var(--tj-color-theme-primary) 100%);
+        }
+    }
+    .product-content {
+        .title {
+            background: linear-gradient(90deg, var(--tj-color-theme-secondary) 0%, var(--tj-color-theme-primary) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: var(--tj-color-light-3);
+            margin-bottom: 10px;
+            display: inline-block;
+            @media #{$xs} {
+                background: linear-gradient(
+                    90deg,
+                    var(--tj-color-theme-secondary) 0%,
+                    var(--tj-color-theme-primary) 100%
+                );
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+        p {
+            margin-bottom: 0;
+        }
+    }
+    &:hover {
+        border-color: var(--tj-color-theme-primary);
+        box-shadow: 30px 15px 30px 0px rgba(0, 0, 0, 0.02);
+        .product-content {
+            .title {
+                color: transparent;
+            }
+        }
+        .product-icon {
+            color: transparent;
+        }
+        .skillbar {
+            background-position: -100%;
+        }
+    }
+}
+
+.tj-progress-bar {
+    margin-top: 20px;
+    width: 400px;
+    @media #{$lg, $md, $sm} {
+        width: 300px;
+    }
+    @media #{$xs} {
+        width: 220px;
+    }
+    .skills {
+        background-color: var(--tj-color-light-7);
+        height: 10px;
+        position: relative;
+        border-radius: 20px;
+        span {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -60px;
+            font-size: 22px;
+            font-weight: var(--tj-fw-bold);
+            font-family: var(--tj-ff-heading);
+            color: var(--tj-color-light-3);
+        }
+        .skillbar {
+            background-color: var(--tj-color-light-3);
+            width: 0px;
+            height: 10px;
+            border-radius: 20px;
+        }
+    }
+}
+
+.product-image-group {
+    position: relative;
+    .group-image-1 {
+        position: relative;
+        margin-bottom: 30px;
+        padding-left: 50px;
+        max-width: 335px;
+        width: 100%;
+        @media #{$xxl, $xl} {
+            max-width: 220px;
+        }
+        @media #{$lg} {
+            max-width: 180px;
+        }
+        @media #{$md, $sm} {
+            max-width: 250px;
+        }
+        @media #{$sm} {
+            max-width: 210px;
+        }
+        @media #{$xs} {
+            max-width: 160px;
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            top: -20px;
+            left: 33px;
+            width: 302px;
+            height: 360px;
+            background: var(--tj-color-light-7);
+            border-radius: 0 0 200px 200px;
+            @media #{$xxl, $xl} {
+                width: 187px;
+                height: 220px;
+                top: -15px;
+            }
+            @media #{$lg} {
+                width: 148px;
+                height: 175px;
+                top: -15px;
+            }
+            @media #{$md} {
+                width: 217px;
+                height: 255px;
+                top: -15px;
+            }
+            @media #{$sm} {
+                width: 178px;
+                height: 210px;
+                top: -15px;
+            }
+            @media #{$xs} {
+                top: -10px;
+                left: 33px;
+                width: 127px;
+                height: 140px;
+            }
+        }
+        img {
+            border-radius: 0 0 200px 200px;
+            position: relative;
+            z-index: 3;
+        }
+    }
+    .group-image-2 {
+        position: relative;
+        max-width: 410px;
+        width: 100%;
+        @media #{$xxl, $xl, $lg} {
+            max-width: 220px;
+        }
+        @media #{$lg} {
+            max-width: 200px;
+        }
+        @media #{$md, $sm} {
+            max-width: 250px;
+        }
+        @media #{$xs} {
+            max-width: 150px;
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            top: 3px;
+            top: 0;
+            right: -15px;
+            width: 425px;
+            height: 465px;
+            background: var(--tj-color-light-7);
+            border-radius: 200px 200px 0 0;
+            @media #{$xxl, $xl} {
+                width: 230px;
+                height: 250px;
+                right: -10px;
+            }
+            @media #{$lg} {
+                width: 215px;
+                height: 230px;
+            }
+            @media #{$md, $sm} {
+                width: 265px;
+                height: 285px;
+            }
+            @media #{$xs} {
+                width: 165px;
+                height: 175px;
+            }
+        }
+        img {
+            border-radius: 200px 200px 0 0;
+            position: relative;
+            z-index: 3;
+        }
+        .shape-1 {
+            position: absolute;
+            top: -45px;
+            left: 10px;
+        }
+    }
+    .group-image-3 {
+        position: absolute;
+        top: 10%;
+        right: -35%;
+        transform: translateY(-50%);
+        max-width: 325px;
+        width: 100%;
+        @media #{$xxl, $xl} {
+            max-width: 210px;
+            right: 0;
+        }
+        @media #{$lg} {
+            max-width: 160px;
+            right: 15px;
+        }
+        @media #{$md} {
+            max-width: 250px;
+            right: 25%;
+        }
+        @media #{$sm} {
+            max-width: 220px;
+            right: 5%;
+        }
+        @media #{$xs} {
+            max-width: 150px;
+            right: 5%;
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            top: -10px;
+            right: 0;
+            width: 325px;
+            height: 425px;
+            background: var(--tj-color-light-7);
+            border-radius: 0 0 200px 200px;
+            @media #{$xxl, $xl} {
+                right: -15px;
+                width: 225px;
+                height: 290px;
+            }
+            @media #{$lg} {
+                right: -15px;
+                width: 175px;
+                height: 225px;
+            }
+            @media #{$md} {
+                right: -20px;
+                width: 270px;
+                height: 340px;
+            }
+            @media #{$sm} {
+                right: -15px;
+                width: 235px;
+                height: 300px;
+            }
+            @media #{$xs} {
+                top: -10px;
+                right: -10px;
+                width: 159px;
+                height: 205px;
+            }
+        }
+        img {
+            border-radius: 0 0 200px 200px;
+            position: relative;
+            z-index: 3;
+        }
+        .shape-1 {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            @media #{$xxl, $xl, $lg} {
+                left: 20%;
+            }
+            @media #{$lg} {
+                left: 10%;
+            }
+            @media #{$md, $sm, $xs} {
+                left: 25%;
+            }
+            @media #{$xs} {
+                max-width: 100px;
+            }
+        }
+        .shape-2 {
+            position: absolute;
+            top: -110px;
+            left: 35%;
+            transform: translateX(-50%);
+            z-index: -1;
+            @media #{$xxl, $xl, $lg} {
+                left: 5%;
+            }
+            @media #{$xs} {
+                left: 0;
+            }
+        }
+    }
+}
+
+/* !END: Theme Product CSS */

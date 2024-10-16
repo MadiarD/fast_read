@@ -1,0 +1,170 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Counter CSS
+----------------------------------------*/
+.tj-counter-section {
+    background: linear-gradient(90deg, #1c1c1c -25.81%, #373636 116.04%);
+    padding: 57px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.counter-section-shape {
+    .counter_shape {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+    .counter_shape1 {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.counter-content-area {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+    z-index: 9;
+    @media #{$md, $sm} {
+        grid-template-columns: repeat(2, 1fr);
+        text-align: center;
+    }
+    @media #{$xs} {
+        grid-template-columns: repeat(1, 1fr);
+        text-align: center;
+    }
+    .counter-item {
+        border-right: 1.5px solid rgba(161, 172, 179, 0.2);
+        position: relative;
+        z-index: 9;
+        padding-bottom: 14px;
+        padding-left: 50px;
+        &:first-child {
+            padding-left: 0;
+        }
+        @media #{$md, $sm, $xs} {
+            border-right: none;
+            padding-left: 0;
+            margin-bottom: 30px;
+        }
+        &:last-child {
+            border-right: none;
+        }
+        .tj-count {
+            font-size: 80px;
+            font-family: var(--tj-ff-heading);
+            font-weight: var(--tj-fw-bold);
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+            line-height: 1;
+            @media #{$lg, $md, $sm} {
+                font-size: 55px;
+            }
+            @media #{$xs} {
+                font-size: 50px;
+            }
+        }
+        .sub-title {
+            font-size: 22px;
+            color: var(--tj-color-common-white);
+            font-weight: var(--tj-fw-bold);
+            @media #{$xl} {
+                font-size: 20px;
+            }
+            @media #{$lg, $md, $sm, $xs} {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.tj-counter-section-two {
+    background: linear-gradient(90deg, var(--tj-color-theme-secondary) 0%, var(--tj-color-theme-primary) 100%);
+    padding: 60px 0;
+    position: relative;
+    &::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-image: url(../images/banner-bg/counter-shape.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+}
+
+.counter-content-two {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 9;
+    @media #{$xs} {
+        display: block;
+        text-align: center;
+    }
+    .counter-item {
+        border-right: 1.5px solid rgba(32, 217, 161, 0.3);
+        position: relative;
+        z-index: 9;
+        margin-bottom: 20px;
+        &:last-child {
+            border-right: none;
+        }
+        .tj-count {
+            font-size: 80px;
+            font-weight: var(--tj-fw-bold);
+            font-family: var(--tj-ff-heading);
+            opacity: 0.1;
+            color: var(--tj-color-theme-secondary);
+            @media #{$md, $sm, $xs} {
+                font-size: 40px;
+            }
+        }
+        .sub-title {
+            font-size: 22px;
+            color: var(--tj-color-common-white);
+            font-weight: var(--tj-fw-bold);
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+.counter-item-two {
+    margin-bottom: 30px;
+    @media #{$xs} {
+        margin-bottom: 15px;
+    }
+    .tj-count {
+        font-size: 60px;
+        font-family: var(--tj-ff-heading);
+        font-weight: var(--tj-fw-bold);
+        color: var(--tj-color-common-white);
+        @media #{$md, $sm, $xs} {
+            font-size: 40px;
+        }
+    }
+    .sub-title {
+        color: var(--tj-color-common-white);
+        font-weight: var(--tj-fw-medium);
+        font-family: var(--tj-ff-heading);
+        font-size: 18px;
+        position: relative;
+        @media #{$md} {
+            font-size: 16px;
+        }
+        @media #{$sm, $xs} {
+            font-size: 15px;
+        }
+    }
+}
+/* !END: Theme Counter CSS */

@@ -1,0 +1,72 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Video CSS
+----------------------------------------*/
+.tj-video-section {
+    background: linear-gradient(72deg, var(--tj-color-light-3) 0%, rgba(112, 95, 255, 0) 99.2%);
+    padding-top: 210px;
+    padding-bottom: 210px;
+    background-image: url(../images/product/cta-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+    @media #{$md, $sm, $xs} {
+        padding-top: 110px;
+        padding-bottom: 110px;
+    }
+    .tj-video-area {
+        .video-icon {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            &::before {
+                position: absolute;
+                content: "";
+                width: 90px;
+                height: 90px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                border-radius: 50%;
+            }
+        }
+        .popup-videos-button {
+            background: rgba(58, 58, 58, 0.7);
+            width: 74px;
+            height: 74px;
+            line-height: 74px;
+            border-radius: 50%;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+        }
+    }
+    .video-sec-shape {
+        @media #{$md, $sm, $xs} {
+            display: none;
+        }
+        .shape-1 {
+            position: absolute;
+            left: 12%;
+            bottom: 20px;
+        }
+        .shape-2 {
+            position: absolute;
+            right: 12%;
+            top: 0;
+        }
+        .shape-3 {
+            position: absolute;
+            left: 5%;
+            top: 10%;
+        }
+    }
+}
+/* !END: Theme Video CSS */

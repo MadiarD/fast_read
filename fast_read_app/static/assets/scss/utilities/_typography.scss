@@ -1,0 +1,40 @@
+// Font URL
+$font-url: "https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&family=Nunito+Sans:opsz,wght@6..12,600&family=Ubuntu:wght@400;500;700&display=swap";
+//Font Family
+$font-family: (
+    ff: (
+        body: "'Nunito Sans', sans-serif",
+        heading: "'Ubuntu', sans-serif",
+        heading2: "'Bilbo Swash Caps', cursive",
+        fontawesome: '"Font Awesome 6 Pro"',
+    ),
+);
+
+// Font Weight
+$font-scale: (
+    fw: (
+        normal: normal,
+        thin: 100,
+        elight: 200,
+        light: 300,
+        regular: 400,
+        medium: 500,
+        sbold: 600,
+        bold: 700,
+        ebold: 800,
+        black: 900,
+    ),
+);
+
+// Font Size
+$font-size: (
+    fs: (
+        body: 16px,
+        h1: 70px,
+        h2: 50px,
+        h3: 28px,
+        h4: 22px,
+        h5: 18px,
+        h6: 16px,
+    ),
+);
