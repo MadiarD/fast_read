@@ -41,69 +41,171 @@
             font-style: normal;
         }
 
-        /* Дополнительные стили для теста */
+        /* Стили для эффекта книги */
+        .book-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 60px auto;
+            perspective: 2000px;
+        }
+
+        .book {
+            position: relative;
+            width: 100%;
+            height: auto;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .book:hover {
+            transform: rotateY(-10deg);
+        }
+
+        .book::before,
+        .book::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fdfdfd;
+            top: 0;
+            left: 0;
+            transform-origin: left center;
+            transform: rotateY(0deg);
+            backface-visibility: hidden;
+            border: 1px solid #ccc;
+        }
+
+        .book::after {
+            background: #fff;
+            transform: rotateY(180deg);
+        }
+
+        .book-content {
+            position: relative;
+            padding: 40px 60px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        /* Обновленные стили для текста и кнопок */
         .quiz-section {
             padding: 60px 0;
             background-color: #f8f9fa;
         }
 
         #text-container {
-            border: 1px solid #ced4da;
-            border-radius: 5px;
             padding: 15px;
             height: 300px;
             overflow-y: scroll;
-            display: none;
             background-color: #ffffff;
             margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
         }
 
         #timer {
             font-weight: bold;
             margin-top: 10px;
             font-size: 1.1rem;
+            color: #007bff;
         }
 
         #question-container {
-            display: none;
             margin-top: 30px;
             background-color: #ffffff;
             padding: 20px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
         }
 
-        #next-btn, #submit-btn {
+        #start-btn,
+        #ready-btn,
+        #next-btn,
+        #submit-btn {
             margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        #start-btn:hover,
+        #ready-btn:hover,
+        #next-btn:hover,
+        #submit-btn:hover {
+            background-color: #0056b3;
         }
 
         .progress {
             height: 25px;
             margin-top: 15px;
-            display: none;
-        }
-
-        .btn-custom {
-            background-color: #007bff;
-            color: #fff;
-            border-radius: 50px;
-            padding: 10px 30px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .btn-custom:hover {
-            background-color: #0056b3;
-            color: #fff;
         }
 
         .question h5 {
             font-weight: bold;
             margin-bottom: 15px;
+            color: #333;
         }
 
         .form-check-label {
             font-size: 16px;
+            color: #555;
+        }
+
+        /* Дополнительные стили для гармонии с остальным дизайном */
+        .quiz-section h1 {
+            font-family: 'Andika', sans-serif;
+            font-weight: 700;
+            color: #333;
+        }
+
+        #whatsapp-input label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        #whatsapp_number {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        /* Анимация для кнопок */
+        #start-btn,
+        #ready-btn,
+        #next-btn,
+        #submit-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #start-btn::after,
+        #ready-btn::after,
+        #next-btn::after,
+        #submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
+        }
+
+        #start-btn:hover::after,
+        #ready-btn:hover::after,
+        #next-btn:hover::after,
+        #submit-btn:hover::after {
+            left: 0;
         }
     </style>
 </head>
@@ -134,8 +236,9 @@
     <div class="tj-offcanvas-area d-lg-none">
         <div class="tj-offcanvas-header d-flex align-items-center justify-content-between">
             <div class="logo-area">
-                <a href="index.html"><img src="/static/assets/images/logo/white-logo.png" style="width: 35%;;" alt="Logo" /></a>
+                <a href="#"><img src="/static/assets/images/logo/white-logo.png" style="width: 35%;;" alt="Logo" /></a>
             </div>
+
             <div class="offcanvas-icon">
                 <a id="canva_close" href="#">
                     <i class="fa-light fa-xmark"></i>
@@ -153,11 +256,11 @@
                     </li>
                     <li>
                         <span><i class="fa-sharp fa-solid fa-location-dot"></i></span>
-                        <a href="#">225 Marion Street, Columbia</a>
+                        <a href="#">Адрес</a>
                     </li>
                     <li>
                         <span><i class="fa-solid fa-phone-volume"></i></span>
-                        <a href="tel:+00123456789">+ 00 123 456 789</a>
+                        <a href="tel:+77076311753">+77076311753</a>
                     </li>
                 </ul>
             </div>
@@ -181,7 +284,6 @@
             </ul>
         </div>
         <div class="header-button">
-            <a class="btn tj-black-btn" href="contact.html">Бізбен байланысыңыз</a>
         </div>
     </div>
     <!-- end: Mobile Menu -->
@@ -192,24 +294,23 @@
             <div class="menu-area" >
                 <div class="logo-area">
                     <div class="logo">
-                        <a href="index.html"><img src="/static/assets/images/logo/dark-logo.png" style="width:35%;" alt="Logo" /></a>
+                        <a href="#"><img src="/static/assets/images/logo/dark-logo.png" style="width:35%;" alt="Logo" /></a>
                     </div>
                 </div>
                 <div class="tj-menu-area d-lg-block d-none" id="main-menu">
                     <nav id="mobile-menu">
-                        <ul>
+                        <ul >
                             <li>
-                                <a href="index.html">Басты</a>
+                                <a class = "mobile-menu-link" href="#">Басты</a>
                             </li>
                             <li>
-                                <a href="about-us.html">Біз туралы</a>
+                                <a class = "mobile-menu-link" href="#about">Біз туралы</a>
                             </li>
-                            <li><a href="contact.html">Контактілер</a></li>
+                            <li><a class = "mobile-menu-link" href="#contact">Контактілер</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="header-button d-flex d-none d-lg-block">
-                    <a href="contact.html" class="btn tj-black-btn">Байланысу</a>
                 </div>
                 <div class="tj-canva-two d-lg-none">
                     <a class="canva_expander nav-menu-link menu-button" href="#">
@@ -269,11 +370,13 @@
                 </div>
                 <div class="group-6 pulse"></div>
             </div>
+            
         </section>
         <!-- end: Hero Area -->
-
+       
+      
         <!-- start: About Area -->
-        <section class="tj-about-section-three">
+        <section class="tj-about-section-three" id = "about">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-6">
@@ -307,31 +410,15 @@
                             data-sal-delay="600">
                             <div class="tj-sec-heading">
                                 <span class="secondary-color">Біз туралы</span>
-                                <h2 class="sec-title">Unlock Revenue Growth for Your Business.</h2>
+                                <h2 class="sec-title">Fast Book</h2>
                                 <div class="desc">
                                     <p>
-                                        There are many variations of passages of Lorem Ipsum available, but the
-                                        majority have suffered alteration in some form, by injected humor.
-                                    </p>
+                                        "Fast Book" — бұл оқырмандарға оқу жылдамдығын тексеруге және жақсартуға көмектесетін заманауи онлайн-платформа. Біздің мақсатымыз — әр адамның оқу қабілеттерін дамыту және тиімділігін арттыру. Жылдам және түсінікті оқу арқылы жаңа білімге жылдамырақ қол жеткізуге болады, ал біз сізге осы жолда көмек көрсетуге дайынбыз.                                    </p>
                                 </div>
                                 <div class="about-content">
                                     <div class="about-item">
-                                        <div class="about-icon hover-shape-border">
-                                            <i class="flaticon-profile"></i>
-                                            <div class="icon-shape">
-                                                <span class="border-shadow shadow-1"></span>
-                                                <span class="border-shadow shadow-2"></span>
-                                                <span class="border-shadow shadow-3"></span>
-                                                <span class="border-shadow shadow-4"></span>
-                                            </div>
-                                        </div>
-                                        <div class="about-text">
-                                            <h5 class="title">Efficiency & Management</h5>
-                                            <p>
-                                                There are many variations of passages of Lorem Ipsum available, but
-                                                the majority. giving information on its origins,
-                                            </p>
-                                        </div>
+                                       
+                                       
                                     </div>
                                     <div class="about-item">
                                         <div class="about-icon hover-shape-border">
@@ -344,17 +431,14 @@
                                             </div>
                                         </div>
                                         <div class="about-text">
-                                            <h5 class="title">Commitment & Professional</h5>
+                                            <h5 class="title">Миссиямыз</h5>
                                             <p>
-                                                There are many variations of passages of Lorem Ipsum available, but
-                                                the majority.
+                                                баршаға оқу өнерін меңгеруге және өз қабілеттерін жаңа деңгейге көтеруге жағдай жасау.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="about-button d-flex">
-                                    <a href="about-us.html" class="btn tj-white-btn">Read More</a>
-                                </div>
+                              
                             </div>
                         </div>
                     </div>
@@ -364,150 +448,113 @@
         <!-- end: About Area -->
      
 
-        <section class="quiz-section">
-            <div class="container">
-                <h1 class="mb-4 text-center">Оқу Тесті</h1>
-
-                <!-- Start Button -->
-                <div class="text-center">
-                    <button id="start-btn" class="btn btn-custom">Бастау</button>
-                </div>
-
-                <!-- Stopwatch Display -->
-                <div id="timer" class="text-center text-primary">Уақыт: 0 секунд</div>
-
-                <!-- Progress Bar -->
-                <div class="progress" id="progress-bar">
-                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
-                        aria-valuemin="0" aria-valuemax="100">0%</div>
-                </div>
-
-                <!-- Text Container -->
-                <div id="text-container" class="mt-4">
-                    <p id="story-text"></p>
-                </div>
-
-                <!-- Ready Button -->
-                <div class="text-center mt-3">
-                    <button id="ready-btn" class="btn btn-success" style="display: none;">Дайын</button>
-                </div>
-
-                <!-- Question Container -->
-                <div id="question-container">
-                    <h2 class="mb-4 text-center">Тест</h2>
-                    <form id="quiz-form">
-                        <!-- Questions will be injected here -->
-                        <div id="question-content"></div>
-
-                        <!-- Кнопка "Келесі" внутри блока теста -->
-                        <div id="next-button" class="text-center" style="margin-top: 20px;">
-                            <button type="button" id="next-btn" class="btn btn-custom">Келесі</button>
-                        </div>
-
-                        <!-- WhatsApp Number Input -->
-                        <div id="whatsapp-input" style="display: none;">
-                            <div class="mb-3">
-                                <label for="whatsapp_number" class="form-label">WhatsApp номеріңіз:</label>
-                                <input type="text" class="form-control" id="whatsapp_number" name="whatsapp_number"
-                                    required>
-                            </div>
-                            <!-- Кнопка "Жіберу" внутри блока WhatsApp -->
-                            <div class="text-center">
-                                <button type="submit" id="submit-btn" class="btn btn-custom">Жіберу</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
+      
     
     </main>
     <!-- start: Footer Area -->
     <footer class="tj-footer-three">
         <div class="footer-top-area">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="contact-right-content" data-sal="slide-right" data-sal-duration="1000"
-                            data-sal-delay="600">
-                            <div class="tj-sec-heading">
-                                <span class="white-sub-title">Get in touch</span>
-                                <h2 class="title">
-                                    Get your Free Trial and <span class="black-color">Quotation</span>
-                                </h2>
-                                <div class="desc">
-                                    <p>
-                                        All the Lorem Ipsum generators on the Internet tend to repeat predefined
-                                        chunks as necessary, making this the first true generator on the Internet.
-                                    </p>
-                                </div>
-                                <div class="comntact-list">
-                                    <div class="contact-icon">
-                                        <img src="/static/assets/images/icon/phone4.svg" alt="Icon" />
+               
+                        <div class="book-wrapper">
+                            <div class="book">
+                                <div class="book-content">
+                                    <h1 class="mb-4 text-center">Оқу Тесті</h1>
+            
+                                    <!-- Start Button -->
+                                    <div class="text-center">
+                                        <button id="start-btn">Бастау</button>
                                     </div>
-                                    <div class="contact-header">
-                                        <p class="d-block">Heple Line:</p>
-                                        <a href="tel:+000123456789">+ 000 123 456 789</a>
+            
+                                    <!-- Stopwatch Display -->
+                                    <div id="timer" class="text-center">Уақыт: 0 секунд</div>
+            
+                                    <!-- Progress Bar -->
+                                    <div class="progress" id="progress-bar" style="display: none;">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                                            aria-valuemin="0" aria-valuemax="100">0%</div>
                                     </div>
+            
+                                    <!-- Text Container -->
+                                    <div id="text-container" class="mt-4" style="display: none;">
+                                        <p id="story-text"></p>
+                                    </div>
+            
+                                    <!-- Ready Button -->
+                                    <div class="text-center mt-3">
+                                        <button id="ready-btn" style="display: none;">Дайын</button>
+                                    </div>
+            
+                                    <!-- Question Container -->
+                                    <div id="question-container" style="display: none;">
+                                        <h2 class="mb-4 text-center">Тест</h2>
+                                        <form id="quiz-form">
+                                            <!-- Questions will be injected here -->
+                                            <div id="question-content"></div>
+            
+                                            <!-- Кнопка "Келесі" внутри блока теста -->
+                                            <div id="next-button" class="text-center">
+                                                <button type="button" id="next-btn">Келесі</button>
+                                            </div>
+            
+                                            <!-- WhatsApp Number Input -->
+                                            <div id="whatsapp-input" style="display: none;">
+                                                <div class="mb-3">
+                                                    <label for="whatsapp_number" class="form-label">WhatsApp номеріңіз:</label>
+                                                    <input type="text" id="whatsapp_number" name="whatsapp_number" required>
+                                                </div>
+                                                <!-- Кнопка "Жіберу" внутри блока WhatsApp -->
+                                                <div class="text-center">
+                                                    <button type="submit" id="submit-btn">Жіберу</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+            
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <form id="contact-form2">
-                            <div class="contact-form-box3" data-sal="slide-left" data-sal-duration="1000"
-                                data-sal-delay="600">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-input">
-                                            <input type="text" class="form__input" placeholder="Name" name="con2Name" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-input">
-                                            <input type="email" class="form__input" placeholder="Email"
-                                                name="con2Email" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-input">
-                                            <input type="text" class="form__input"
-                                                placeholder="Business services consultion" name="con2Subject" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-textarea">
-                                            <textarea id="message" name="con2Message"
-                                                placeholder="Type your query"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tj-contact-button">
-                                    <button class="btn tj-black-btn-two" type="submit" value="submit">
-                                        Submit
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+           
+        
             </div>
+        </div>
+        <div class="sidebar-wrapper">
+           
+            
+            <div class="blog-video-area">
+               
+                <div class="row video-box">
+                    <span class="col-lg-2 "></span>
+                    <div class="col-lg-8 col-12 p-4">
+                        <div class="video-image">
+                            <img src="https://vogazeta.ru/uploads/full_size_1634038683-d8429e49ab180e630e474ce85290f5c2.jpg" alt="Image">
+                            <div class="video-play">
+                                <a class="venobox popup-videos-button" data-autoplay="true" data-vbtype="video" href="https://www.youtube.com/watch?v=ADmQTw4qqTY">
+                                    <i class="fa-sharp fa-solid fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                
+            </div>
+        
         </div>
         <div class="footer-menu-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="footer-widget footer1-col-1">
                             <div class="footer-content-info">
-                                <div class="footer-logo">
-                                    <a href="index.html">
-                                        <img src="/static/assets/images/logo/footer-logo2.png" alt="Logo" />
+                                <div class="footer-logo row" style="max-width:1000px !important;">
+                                    <a href="#" class="col-2">
+                                        <img src="/static/assets/images/logo/white-logo.png" alt="Logo" />
                                     </a>
+                                    <h4 class="title d-flex col-6" style="align-items: center; color:white;">Fast Book</h4>
                                 </div>
                                 <p>
-                                    All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks
-                                    as necessary, making this the first true generator on the Internet.
+                                    Біздің сервис оқудың тиімділігін арттыруға көмектеседі.<br> Әрбір оқушы мен маманға жылдамдықты арттырудың маңыздылығын түсінуге мүмкіндік береміз.
                                 </p>
                                 <div class="footer-share">
                                     <ul class="dot-style">
@@ -515,10 +562,10 @@
                                             <a href="#"><i class="fa-brands fa-instagram"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                                            <a href="https://wa.me/+77076311753"><i class="fa-brands fa-whatsapp"></i></a>
                                         </li>
                                         <li>
                                             <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
@@ -528,25 +575,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="footer-widget footer1-col-2">
-                            <h4 class="footer_title">Top Links</h4>
-                            <div class="widget_nav_menu">
-                                <div class="footer-menu">
-                                    <ul>
-                                        <li><a href="#">How it’s Work</a></li>
-                                        <li><a href="#">Partners</a></li>
-                                        <li><a href="#">Testimonials</a></li>
-                                        <li><a href="#">Case Studies</a></li>
-                                        <li><a href="#">Priving</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
+                   
+                    <div class="col-lg-6 col-md-6 col-sm-6" id = "contact">
                         <div class="footer-widget footer1-col-5">
-                            <h4 class="footer_title">Contact Us</h4>
+                            <h4 class="footer_title">Контактілер</h4>
                             <div class="widget_contact_menu">
                                 <div class="footer-menu">
                                     <ul>
@@ -560,11 +592,11 @@
                                         </li>
                                         <li>
                                             <span><i class="fa-sharp fa-solid fa-location-dot"></i></span>
-                                            <a href="#">25 Marion, Columbia</a>
+                                            <a href="#">Адрес</a>
                                         </li>
                                         <li>
                                             <span><i class="fa-solid fa-phone-volume"></i></span>
-                                            <a href="tel:+00123456789">+ 00 123 456 789</a>
+                                            <a href="tel:+77076311753">+77076311753</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -629,6 +661,11 @@
     <script src="/static/assets/js/main.js"></script>
 
     <script>
+        const $mobileMenulinks = $('.mobile-menu-link');
+        
+        $mobileMenulinks.on('click', function (e) {
+            $('body').removeClass('canvas_expanded');
+        });
         // Function to get CSRF token from hidden input
         function getCSRFToken() {
             const csrfToken = document.querySelector('[name=csrf-token]').getAttribute('content');
@@ -755,7 +792,7 @@
                     })
                     .then(responseData => {
                         // Display success message
-                        $('body').html(`
+                        $('.book-content').html(`
                             <div class="container text-center" style="padding: 100px 0;">
                                 <h2 class="mt-5">Рахмет!</h2>
                                 <p>Сіздің жауабыңыз қабылданды!</p>
