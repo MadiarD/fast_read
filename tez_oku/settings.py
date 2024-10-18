@@ -12,11 +12,16 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-
+import environs
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environs.Env()
+env.read_env(override=True)
 
+CHROME_DRIVER_PATH = env('CHROME_DRIVER_PATH')
+USER_PROFILE = env('USER_PROFILE')
+CHROME_BINARY = env('CHROME_BINARY')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -26,10 +31,14 @@ SECRET_KEY = 'django-insecure-xk!1o10^s16%63p@nsn=b%#6qf*ci$*lb-19l5rb8)fr&40(0g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['fastbook.kz', 'www.fastbook.kz','localhost','127.0.0.1']
 
 
-# Application definition
+CSRF_TRUSTED_ORIGINS = [
+    'https://fastbook.kz',
+    'https://www.fastbook.kz',
+]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -127,3 +136,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+

@@ -1,0 +1,1 @@
+default_app_config = 'fast_read_app.apps.FastReadAppConfig'

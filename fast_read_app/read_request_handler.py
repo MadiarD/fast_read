@@ -1,13 +1,12 @@
 from django.http import HttpRequest, JsonResponse
 
 from .models import ClientResult, Text, WhatsappMessage
-from .whatsapp_services import send_whatsapp_message
 from .text_reader_services import (get_block_questions,
                                    get_correct_answers_count, get_random_text,
                                    get_text_blocks, get_text_read_speed)
 
 
-
+import sys
 
 def read_request_handler(
     id : int, 
@@ -42,8 +41,8 @@ def read_request_handler(
             print(message)
         else:
             message = wh.text
-
-        send_whatsapp_message(tel_number, message)
+        sender = sys.modules['fast_read_app.apps'].sender
+        sender.send_whatsapp_message(tel_number, message)
 
         return JsonResponse({'success': True})
     except Exception as e:
