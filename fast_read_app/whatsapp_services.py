@@ -4,6 +4,7 @@ import time
 import traceback
 import threading
 import queue
+import urllib.parse
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -72,8 +73,9 @@ class WhatsAppSender:
             
             # Ожидаем, пока пользователь войдет в систему
             print("Пожалуйста, войдите в WhatsApp Web, если еще не вошли.")
+            # Ожидаем, пока исчезнет QR-код (появится поле чата)
             WebDriverWait(driver, self.wait_time).until(
-                EC.presence_of_element_located((By.XPATH, "//div[@contenteditable='true'][@data-tab='3']"))
+                EC.presence_of_element_located((By.XPATH, "//div[@role='textbox']"))
             )
             print("Вход в WhatsApp Web выполнен.")
             return driver
@@ -82,28 +84,54 @@ class WhatsAppSender:
             traceback.print_exc()
             raise
 
-    def _send_message(self, phone_number, message):
+    def _send_message_via_direct_link(self, phone_number, message):
         try:
-            # Используем функцию поиска для нахождения контакта по номеру телефона
-            search_box_xpath = "//div[@contenteditable='true'][@data-tab='3']"
-            search_box = WebDriverWait(self.driver, self.wait_time).until(
-                EC.presence_of_element_located((By.XPATH, search_box_xpath))
-            )
-            search_box.clear()
-            search_box.send_keys(phone_number)
-            search_box.send_keys(Keys.ENTER)
+            # Кодирование сообщения для URL
+            encoded_message = urllib.parse.quote(message)
+            url = f"https://web.whatsapp.com/send?phone={phone_number}&text={encoded_message}&app_absent=0"
             
-            # Ждем, пока загрузится поле ввода сообщения
-            input_box_xpath = "//footer//div[@contenteditable='true'][@data-tab='10']"
-            input_box = WebDriverWait(self.driver, self.wait_time).until(
-                EC.presence_of_element_located((By.XPATH, input_box_xpath))
+            # Открываем URL для отправки сообщения
+            self.driver.get(url)
+            
+            # Добавляем задержку, чтобы страница успела загрузиться
+            time.sleep(5)  # 5 секунд, можно настроить по необходимости
+            
+            # Определяем XPath кнопки отправки с учётом локализации
+            # Для русского интерфейса: aria-label="Отправить"
+            # Для английского интерфейса: aria-label="Send"
+            send_button_xpath = "//button[@aria-label='Отправить' or @aria-label='Send']"
+            send_button = WebDriverWait(self.driver, self.wait_time).until(
+                EC.element_to_be_clickable((By.XPATH, send_button_xpath))
             )
-            input_box.send_keys(message)
-            input_box.send_keys(Keys.ENTER)
-
-            print(f"Сообщение успешно отправлено на номер: {phone_number}")
+            
+            # Нажимаем кнопку отправки
+            send_button.click()
+            
+            print(f"Сообщение успешно отправлено через прямую ссылку на номер: {phone_number}")
+            
+            # Ждем, пока сообщение отправится
+            time.sleep(5)  # Можно настроить время ожидания по необходимости
+            
+            # После отправки сообщения через ссылку, возвращаемся на основную страницу
+            self.driver.get("https://web.whatsapp.com")
+            WebDriverWait(self.driver, self.wait_time).until(
+                EC.presence_of_element_located((By.XPATH, "//div[@role='textbox']"))
+            )
+            # Добавляем небольшую задержку перед следующим сообщением
+            time.sleep(2)
+            
         except Exception as e:
-            print(f"Ошибка при отправке сообщения на {phone_number}: {e}")
+            print(f"Ошибка при отправке сообщения через прямую ссылку на {phone_number}: {e}")
+            traceback.print_exc()
+
+    def _send_message(self, phone_number, message):
+        """
+        Отправить сообщение через прямую ссылку.
+        """
+        try:
+            self._send_message_via_direct_link(phone_number, message)
+        except Exception as e:
+            print(f"Не удалось отправить сообщение на номер {phone_number}: {e}")
             traceback.print_exc()
 
     def _worker(self):
