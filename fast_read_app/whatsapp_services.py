@@ -49,7 +49,7 @@ class WhatsAppSender:
         service = Service(executable_path=self.chrome_driver_path)
         options = Options()
         
-        # Не указывайте user-data-dir, чтобы использовать временный профиль
+        # Указываем user-data-dir для сохранения сессии
         options.add_argument(f"--user-data-dir={self.user_profile}")
         
         options.binary_location = self.chrome_binary
@@ -67,24 +67,38 @@ class WhatsAppSender:
 
         try:
             driver = webdriver.Chrome(service=service, options=options)
+            driver.maximize_window()
+            driver.get("https://web.whatsapp.com")
+            
+            # Ожидаем, пока пользователь войдет в систему
+            print("Пожалуйста, войдите в WhatsApp Web, если еще не вошли.")
+            WebDriverWait(driver, self.wait_time).until(
+                EC.presence_of_element_located((By.XPATH, "//div[@contenteditable='true'][@data-tab='3']"))
+            )
+            print("Вход в WhatsApp Web выполнен.")
             return driver
         except Exception as e:
             print(f"Ошибка инициализации WebDriver: {e}")
             traceback.print_exc()
             raise
 
-
     def _send_message(self, phone_number, message):
         try:
-            url = f"https://web.whatsapp.com/send?phone={phone_number}&text={message}"
-            self.driver.get(url)
-
-            # Ожидаем загрузки поля ввода сообщения
-            WebDriverWait(self.driver, self.wait_time).until(
-                EC.presence_of_element_located((By.XPATH, "//footer//div[@contenteditable='true']"))
+            # Используем функцию поиска для нахождения контакта по номеру телефона
+            search_box_xpath = "//div[@contenteditable='true'][@data-tab='3']"
+            search_box = WebDriverWait(self.driver, self.wait_time).until(
+                EC.presence_of_element_located((By.XPATH, search_box_xpath))
             )
-
-            input_box = self.driver.find_element(By.XPATH, "//footer//div[@contenteditable='true']")
+            search_box.clear()
+            search_box.send_keys(phone_number)
+            search_box.send_keys(Keys.ENTER)
+            
+            # Ждем, пока загрузится поле ввода сообщения
+            input_box_xpath = "//footer//div[@contenteditable='true'][@data-tab='10']"
+            input_box = WebDriverWait(self.driver, self.wait_time).until(
+                EC.presence_of_element_located((By.XPATH, input_box_xpath))
+            )
+            input_box.send_keys(message)
             input_box.send_keys(Keys.ENTER)
 
             print(f"Сообщение успешно отправлено на номер: {phone_number}")
@@ -95,9 +109,6 @@ class WhatsAppSender:
     def _worker(self):
         try:
             self.driver = self._initialize_driver()
-
-            # Предполагаем, что пользователь уже вошёл в WhatsApp Web
-            print("WebDriver инициализирован. Предполагается, что пользователь уже вошёл в WhatsApp Web.")
 
             while not self.stop_event.is_set():
                 try:
