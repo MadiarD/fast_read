@@ -32,13 +32,17 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Rubik+Maps&family=Rubik+Wet+Paint&display=swap"
         rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <!-- CSRF Token as Hidden Input -->
     <meta name="csrf-token" content="{{ csrf_token }}">
     <style>
-        a {
-            font-family: "Andika", system-ui !important;
+        a ,p{
             font-weight: 700!important;
             font-style: normal;
+            font-family: "Montserrat", sans-serif !important;
+           
         }
 
         /* Стили для эффекта книги */
@@ -109,16 +113,18 @@
             font-size: 1.1rem;
             color: #007bff;
         }
-
+        /* #question-content {
+            pointer-events: all;
+        } */
         #question-container {
             margin-top: 30px;
             background-color: #ffffff;
             padding: 20px;
         }
 
-        #start-btn,
+        .start-btn,
         #ready-btn,
-        #next-btn,
+        .next-btn,
         #submit-btn {
             margin-top: 20px;
             background-color: #007bff;
@@ -131,9 +137,9 @@
             transition: background-color 0.3s;
         }
 
-        #start-btn:hover,
+        .start-btn:hover,
         #ready-btn:hover,
-        #next-btn:hover,
+        .next-btn:hover,
         #submit-btn:hover {
             background-color: #0056b3;
         }
@@ -175,33 +181,24 @@
         }
 
         /* Анимация для кнопок */
-        #start-btn,
+        .start-btn,
         #ready-btn,
-        #next-btn,
+        .next-btn,
         #submit-btn {
             position: relative;
             overflow: hidden;
+            pointer-events: all;
+            cursor: pointer;
         }
 
-        #start-btn::after,
-        #ready-btn::after,
-        #next-btn::after,
-        #submit-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.3s;
-        }
+       
 
-        #start-btn:hover::after,
+        .start-btn:hover::after,
         #ready-btn:hover::after,
-        #next-btn:hover::after,
+        .next-btn:hover::after,
         #submit-btn:hover::after {
             left: 0;
+           
         }
     
         #magazine{
@@ -221,6 +218,9 @@
             }
           
         }
+        .other-back-color{
+            background: var(--tj-color-theme-primary) !important;
+        }
             
     </style>
 </head>
@@ -230,17 +230,16 @@
     <div class="preloader" style="background-color: #fff;" id="preloader">
         <div class="preloader-inner">
             <div class="lines">
-                <span class="line line-1"></span>
-                <span class="line line-2"></span>
-                <span class="line line-3"></span>
-                <span class="line line-4"></span>
-                <span class="line line-5"></span>
-                <span class="line line-6"></span>
-                <span class="line line-7"></span>
-                <span class="line line-8"></span>
-                <span class="line line-9"></span>
+                <span class="line line-1 other-back-color"></span>
+                <span class="line line-2 other-back-color"></span>
+                <span class="line line-3 other-back-color"></span>
+                <span class="line line-4 other-back-color"></span>
+                <span class="line line-5 other-back-color"></span>
+                <span class="line line-6 other-back-color"></span>
+                <span class="line line-7 other-back-color"></span>
+                <span class="line line-8 other-back-color"></span>
+                <span class="line line-9 other-back-color"></span>
             </div>
-            <div class="text">Жүктелуде</div>
         </div>
         
     </div>
@@ -251,7 +250,7 @@
     <div class="tj-offcanvas-area d-lg-none">
         <div class="tj-offcanvas-header d-flex align-items-center justify-content-between">
             <div class="logo-area">
-                <a href="#"><img src="/static/assets/images/logo/white-logo.png" style="width: 35%;;" alt="Logo" /></a>
+                <a href="#"><img src="/static/assets/images/logo/white-logo.png" style="width: 35%;" alt="Logo" /></a>
             </div>
 
             <div class="offcanvas-icon">
@@ -343,7 +342,7 @@
         <!-- start: Hero Area -->
         <section class="tj-hero-section-three">
             <div class="hero-lg-image">
-                <img src="https://cdn.culture.ru/images/f690bee5-6a94-5a2a-afea-21d0e7f791a1" alt="Image" />
+                <img style="width: 100%; position: relative;" src="https://cdn.culture.ru/images/e0ebca2e-b417-5204-a509-996073c438e8" alt="Image" />
             </div>
             <div class="container">
                 <div class="row align-items-center">
@@ -351,16 +350,16 @@
                         <div class="hero-content-area" data-sal="slide-up" data-sal-duration="1000"
                             data-sal-delay="400">
                             <div class="tj-sec-heading">
-                                <h1 class="title">
+                                <h1 style = "margin-left: 10px;"class="title">
                                     Fast<span class="-color">Book</span>
                                 </h1>
-                                <div class="desc">
+                                <div class="desc" style="margin-left:10px;">
                                     <p>
-                                        Кітап оқу жылдамдығыңызды тексеріңіз - Өзіңізді сынап көріңіз !!!
+                                        Кітап оқу жылдамдығыңызды тексеріңіз - Өзіңізді сынап көріңіз
                                     </p>
                                 </div>
-                                <div class="hero-button d-flex">
-                                    <a href="contact.html" class="btn tj-primary-btn">Бастау</a>
+                                <div style="margin:15px 0px 0px 15px;" class="">
+                                    <span class="start-btn">Бастау</span>
                                 </div>
                             </div>
                         </div>
@@ -387,80 +386,8 @@
             </div>
             
         </section>
-        <!-- end: Hero Area -->
        
       
-        <!-- start: About Area -->
-        <section class="tj-about-section-three" id = "about">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="about-image-group-three hover-shape-border">
-                            <div class="gradient-shape pulse">
-                                <img src="/static/assets/images/about/about-shape.png" alt="Shape" />
-                            </div>
-                            <div class="image-group-1" data-sal="slide-right" data-sal-duration="1200"
-                                data-sal-delay="600">
-                                <img class="about-lg-image" src="https://s0.rbk.ru/v6_top_pics/media/img/6/21/754598826668216.jpeg" alt="About" />
-                            </div>
-                            <div class="image-group-2" data-sal="slide-left" data-sal-duration="1200"
-                                data-sal-delay="600">
-                                <img class="about-image" src="https://i.pinimg.com/736x/c2/44/e3/c244e38e9599d40309c15188f8b57504.jpg" alt="About" />
-                            </div>
-                            <div class="about-group-shape">
-                                <div class="shape-1 pulse"></div>
-                                <div class="shape-2 shake-y"></div>
-                                <div class="shape-3 pulse"></div>
-                            </div>
-                            <div class="border-shape">
-                                <span class="border-shadow shadow-1"></span>
-                                <span class="border-shadow shadow-2"></span>
-                                <span class="border-shadow shadow-3"></span>
-                                <span class="border-shadow shadow-4"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="about-content-three" data-sal="slide-left" data-sal-duration="1000"
-                            data-sal-delay="600">
-                            <div class="tj-sec-heading">
-                                <span class="secondary-color">Біз туралы</span>
-                                <h2 class="sec-title">Fast Book</h2>
-                                <div class="desc">
-                                    <p>
-                                        "Fast Book" — бұл оқырмандарға оқу жылдамдығын тексеруге және жақсартуға көмектесетін заманауи онлайн-платформа. Біздің мақсатымыз — әр адамның оқу қабілеттерін дамыту және тиімділігін арттыру. Жылдам және түсінікті оқу арқылы жаңа білімге жылдамырақ қол жеткізуге болады, ал біз сізге осы жолда көмек көрсетуге дайынбыз.                                    </p>
-                                </div>
-                                <div class="about-content">
-                                    <div class="about-item">
-                                       
-                                       
-                                    </div>
-                                    <div class="about-item">
-                                        <div class="about-icon hover-shape-border">
-                                            <i class="flaticon-badge"></i>
-                                            <div class="icon-shape">
-                                                <span class="border-shadow shadow-1"></span>
-                                                <span class="border-shadow shadow-2"></span>
-                                                <span class="border-shadow shadow-3"></span>
-                                                <span class="border-shadow shadow-4"></span>
-                                            </div>
-                                        </div>
-                                        <div class="about-text">
-                                            <h5 class="title">Миссиямыз</h5>
-                                            <p>
-                                                баршаға оқу өнерін меңгеруге және өз қабілеттерін жаңа деңгейге көтеруге жағдай жасау.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                              
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end: About Area -->
      
 
       
@@ -481,7 +408,7 @@
                 
                                         <!-- Start Button -->
                                         <div class="text-center">
-                                            <button id="start-btn">Бастау</button>
+                                            <span class="start-btn">Бастау</span>
                                         </div>
                 
                                         <!-- Stopwatch Display -->
@@ -497,39 +424,13 @@
                                 <p id="story-text"></p>
                             </div>
                             <div class="text-center" style = "height: 20%;">
-                                <button id="ready-btn" style="display: none;">Дайын</button>
+                                <span id="ready-btn" style="display: none; top:24px;">Дайын</span>
                             </div>
                             <!-- Ready Button -->
                         </div>
-                        <div style="background-color: white;">
-                            <div id="question-container" style="display: none;">
-                                <h2 class="mb-4 text-center">Тест</h2>
-                                
-                                    <!-- Questions will be injected here -->
-                                    <div id="question-content"></div>
 
-                                    <!-- Кнопка "Келесі" внутри блока теста -->
-                                    <div id="next-button" class="text-center">
-                                        <button type="button" id="next-btn">Келесі</button>
-                                    </div>
+                 
 
-                                    <!-- WhatsApp Number Input -->
-                                    <div id="whatsapp-input" style="display: none;">
-                                        <div class="mb-3">
-                                            <label for="whatsapp_number" class="form-label">WhatsApp номеріңіз:</label>
-                                            <input type="text" id="whatsapp_number" name="whatsapp_number" required>
-                                        </div>
-                                        <!-- Кнопка "Жіберу" внутри блока WhatsApp -->
-                                        <div class="text-center">
-                                            <button type="submit" id="submit-btn">Жіберу</button>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                        <div style="background-color: white;"></div>
-                        <div style="background-color: white;"></div>
-                        <div style="background-color: white;"></div>
-                        
                     </div>
                 </form>
             </div>
@@ -557,6 +458,73 @@
             </div>
         
         </div>
+         <!-- end: Hero Area -->
+         <section class="tj-about-section" style="background-color: #fff;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-12">
+                        <div class="about-image-group">
+                            <div class="about-circle-box">
+                                <img class="circle-one" src="/static/assets/images/shape/ab-shape.svg" alt="Shape">
+                                <div class="ab-circle">
+                                    <svg class="shape-1" viewBox="0 0 100 100" width="100" height="100">
+                                        <defs>
+                                            <path id="circle" d="
+                                                  M 50, 50
+                                                  m -37, 0
+                                                  a 37,37 0 1,1 74,0
+                                                  a 37,37 0 1,1 -74,0"></path>
+                                        </defs>
+                                        <text font-size="15">
+                                            <textPath xlink:href="#circle" class="shape-1">
+                                                Кітап оқыңыздар_, Fast Book_
+                                            </textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="about-image3 pulse">
+                                <img src="https://i3.wp.com/ichef.bbci.co.uk/images/ic/1200x675/p0gl91h1.jpg?resize=768%2C768&ssl=1" alt="Image">
+                            </div>
+                            <div class="about-image1 pulse">
+                                <img src="https://theotheraesthetic.b-cdn.net/wp-content/uploads/2022/03/Decorative-Antique-Book-Storage-Boxes5.jpeg" alt="Image">
+                            </div>
+                            <div class="about-image2 pulse">
+                                <img src="https://static17.tgcnt.ru/posts/_0/1e/1e6559b867e8c2407539ba7ca2d203ab.jpg" alt="Image">
+                            </div>
+                            <div class="about-image4 pulse">
+                                <img src="https://thumbs.dreamstime.com/b/books-vintage-background-math-formulas-flying-out-97203107.jpg" alt="Image">
+                            </div>
+                            <div class="about-shape1 shake-y">
+                                <img src="/static/assets/images/shape/shape-9.svg" alt="Shape">
+                            </div>
+                            <div class="about-shape2 pulse">
+                                <img src="/static/assets/images/shape/shape-10.svg" alt="Shape">
+                            </div>
+                            <div class="about-shape3 pulse">
+                                <img src="/static/assets/images/shape/shape-13.svg" alt="Shape">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12">
+                        <div class="about-content-one sal-animate" data-sal="slide-left" data-sal-duration="1000" data-sal-delay="600">
+                            <div class="tj-sec-heading">
+                                <span class="secondary-color">Біз туралы</span>
+                                <h2 class="sec-title">Fast Book</h2>
+                                <div class="desc">
+                                    <p>
+                                        "Fast Book" — бұл оқырмандарға оқу жылдамдығын тексеруге және жақсартуға көмектесетін заманауи онлайн-платформа. Біздің мақсатымыз — әр адамның оқу қабілеттерін дамыту және тиімділігін арттыру. Жылдам және түсінікті оқу арқылы жаңа білімге жылдамырақ қол жеткізуге болады, ал біз сізге осы жолда көмек көрсетуге дайынбыз.                                    </p>
+                                    </p>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-section-shape pulse">
+                <img src="/static/assets/images/shape/shape-37.svg" alt="Shape">
+            </div>
+        </section>
         <div class="footer-menu-area">
             <div class="container">
                 <div class="row">
@@ -673,217 +641,8 @@
     <script src="/static/assets/js/validate.min.js"></script>
 
     <script src="/static/assets/js/main.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="http://turnjs.com/catalog/assets/js/turn.min.js"> </script>
-    <script>
-
-    $(window).ready(function() {
-            $('#magazine').turn({
-            display: 'single',
-            acceleration: true,
-            gradients: !$.isTouch,
-            elevation:50,
-            when: {
-                turned: function(e, page) {
-                    /*console.log('Current view: ', $(this).turn('view'));*/
-                }
-            }
-                });
-        });
-	
-
-
-
-        const $mobileMenulinks = $('.mobile-menu-link');
-        
-        $mobileMenulinks.on('click', function (e) {
-            $('body').removeClass('canvas_expanded');
-        });
-        // Function to get CSRF token from hidden input
-        function getCSRFToken() {
-            const csrfToken = document.querySelector('[name=csrf-token]').getAttribute('content');
-            return csrfToken;
-        }
-
-        // Fetch Test Data from the Server
-        async function fetchTestData() {
-            try {
-                const response = await fetch('/get_text_and_questions/', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    credentials: 'same-origin'
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch test data.');
-                }
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                console.error('Error fetching test data:', error);
-                alert('Тест деректерін жүктеу кезінде қате орын алды.');
-            }
-        }
-
-        let timerInterval;
-        let secondsElapsed = 0;
-        let testData = {};
-        let currentQuestionIndex = 0;
-        let userAnswers = {};
-        
-        $(document).ready(function () {
-            // Fetch test data from the server
-            fetchTestData().then(data => {
-                if (data) {
-                    testData = data;
-                    $('#story-text').text(data.text);
-                }
-            });
-
-            // Start Button Click
-            $('#start-btn').click(function () {
-                $(this).fadeOut();
-                $('#magazine').turn('next');
-                $('#text-container').fadeIn();
-                $('#ready-btn').fadeIn();
-                $('#progress-bar').fadeIn();
-                startTimer();
-            });
-
-            $('#ready-btn').click(function () {
-                stopTimer();
-                $('#magazine').turn('next');
-                $('#text-container').fadeOut();
-                $('#ready-btn').fadeOut();
-                $('#progress-bar').fadeOut();
-                showQuestion();
-            });
-
-            $('#next-btn').click(function () {
-                // Save the answer
-                let questionId = testData.questions[currentQuestionIndex].id;
-                let selectedAnswer = $('input[name="question_option"]:checked').val();
-                if (selectedAnswer) {
-                    userAnswers[questionId] = [parseInt(selectedAnswer)];
-                } else {
-                    alert('Жауапты таңдаңыз.');
-                    return;
-                }
-                currentQuestionIndex++; // Move to next question
-             
-                // Check if there are more questions
-                if (currentQuestionIndex < testData.questions.length) {
-                    // Show next question
-                    showQuestion();
-                } else {
-                    // No more questions, show WhatsApp input
-                    $('#question-content').hide();
-                    $('#next-button').hide(); // Hide 'Next' button
-                    $('#whatsapp-input').show();
-                }
-            });
-
-            // Form Submission
-            $('#quiz-form').submit(function (event) {
-                event.preventDefault();
-
-                // Collect WhatsApp number
-                let whatsappNumber = $('#whatsapp_number').val();
-                if (!whatsappNumber) {
-                    alert('WhatsApp номеріңізді енгізіңіз.');
-                    return;
-                }
-
-                // Prepare data to send
-                let payload = {
-                    id: testData.id,
-                    text: testData.text,
-                    whatsapp_number: whatsappNumber,
-                    time: secondsElapsed,
-                    answers: userAnswers
-                };
-
-                // Retrieve CSRF token from hidden input
-                const csrfToken = getCSRFToken();
-
-                // Send data to server
-                fetch('/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrfToken // For Django
-                    },
-                    body: JSON.stringify(payload),
-                    credentials: 'same-origin' // Include cookies
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Жауапты жіберу кезінде қате орын алды.');
-                        }
-                        return response.json();
-                    })
-                    .then(responseData => {
-                        // Display success message
-                        $('.book-content').html(`
-                            <div class="container text-center" style="padding: 100px 0;">
-                                <h2 class="mt-5">Рахмет!</h2>
-                                <p>Сіздің жауабыңыз қабылданды!</p>
-                            </div>
-                        `);
-                        console.log(responseData);
-                    })
-                    .catch(error => {
-                        alert('Қате: ' + error.message);
-                        console.error('Қате:', error);
-                    });
-            });
-        });
-
-        // Timer Functions
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                secondsElapsed++;
-                $('#timer').text(`Уақыт: ${secondsElapsed} секунд`);
-            }, 1000);
-        }
-
-        function stopTimer() {
-            clearInterval(timerInterval);
-        }
-
-        // Show questions one by one
-        function showQuestion() {
-            $('#question-container').fadeIn();
-            let questionData = testData.questions[currentQuestionIndex];
-
-            if (questionData) {
-                $('#question-content').html('');
-                let questionHtml = `<div class="question mb-4">
-                                        <h5>${currentQuestionIndex + 1}. ${questionData.question}</h5>`;
-                questionData.answers.forEach(a => {
-                    questionHtml += `<div class="form-check">
-                                        <input class="form-check-input" type="radio" name="question_option" id="option_${a.id}" value="${a.id}" required>
-                                        <label class="form-check-label" for="option_${a.id}">
-                                            ${a.answer}
-                                        </label>
-                                     </div>`;
-                });
-                questionHtml += `</div>`;
-                $('#question-content').html(questionHtml);
-
-                // Показываем кнопку "Келесі"
-                $('#next-button').show();
-                // Скрываем блок ввода WhatsApp
-                $('#whatsapp-input').hide();
-            } else {
-                // No more questions, show WhatsApp input
-                $('#question-content').hide();
-                $('#next-button').hide(); // Скрываем кнопку "Келесі"
-                $('#whatsapp-input').show();
-            }
-        }
-    </script>
+    <script src="/static/assets/js/quiz.js"></script>
 </body>
 
 </html>

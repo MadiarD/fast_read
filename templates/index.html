@@ -1,121 +1,720 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html class="no-js" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Оқу Тесті</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+
+    <!-- Site Title -->
+    <title>Fast Book</title>
+
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="/static/assets/images/logo/white-logo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="/static/assets/images/logo/white-logo.png" />
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/assets/css/font-awesome-pro.min.css" />
+    <link rel="stylesheet" href="/static/assets/css/flaticon_webency.css" />
+    <link rel="stylesheet" href="/static/assets/css/odometer.min.css" />
+    <link rel="stylesheet" href="/static/assets/css/sal.css" />
+    <link rel="stylesheet" href="/static/assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="/static/assets/css/swiper.min.css" />
+    <link rel="stylesheet" href="/static/assets/css/meanmenu.css" />
+    <link rel="stylesheet" href="/static/assets/css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Rubik+Maps&family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Rubik+Maps&family=Rubik+Wet+Paint&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <!-- CSRF Token as Hidden Input -->
     <meta name="csrf-token" content="{{ csrf_token }}">
     <style>
-        body {
+        a ,p{
+            font-weight: 700!important;
+            font-style: normal;
+            font-family: "Montserrat", sans-serif !important;
+           
+        }
+
+        /* Стили для эффекта книги */
+        .book-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            perspective: 2000px;
+            height: 100%;
+        }
+
+        .book {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+  
+
+        .book::before,
+        .book::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            
+            top: 0;
+            left: 0;
+            transform-origin: left center;
+            transform: rotateY(0deg);
+            backface-visibility: hidden;
+            border: 1px solid #ccc;
+        }
+
+        .book::after {
+            background: #fff;
+            transform: rotateY(180deg);
+        }
+
+        .book-content {
+            position: relative;
+            padding: 40px 60px;
+            background: #fff;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        /* Обновленные стили для текста и кнопок */
+        .quiz-section {
+            padding: 60px 0;
             background-color: #f8f9fa;
-            padding: 20px;
         }
+
         #text-container {
-            border: 1px solid #ced4da;
-            border-radius: 5px;
             padding: 15px;
-            height: 300px;
+            height: 80%;
             overflow-y: scroll;
-            display: none;
             background-color: #ffffff;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
         }
-        #read-text {
-            margin-top: 10px;
-            font-style: italic;
-            color: #6c757d;
-        }
+
         #timer {
             font-weight: bold;
-            margin-top: 10px;
+          
+            font-size: 1.1rem;
+            color: #007bff;
         }
-        #questions-container {
-            display: none;
+        /* #question-content {
+            pointer-events: all;
+        } */
+        #question-container {
             margin-top: 30px;
             background-color: #ffffff;
             padding: 20px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
         }
-        .question {
-            margin-bottom: 20px;
-        }
-        .question h5 {
-            margin-bottom: 10px;
-        }
+
+        #start-btn,
+        #ready-btn,
+        #next-btn,
         #submit-btn {
             margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            transition: background-color 0.3s;
         }
+
+        #start-btn:hover,
+        #ready-btn:hover,
+        #next-btn:hover,
+        #submit-btn:hover {
+            background-color: #0056b3;
+        }
+
         .progress {
             height: 25px;
             margin-top: 15px;
-            display: none;
         }
-        #read-text, #timer {
-            font-size: 1.1rem;
+
+        .question h5 {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
         }
+
+        .form-check-label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Дополнительные стили для гармонии с остальным дизайном */
+        .quiz-section h1 {
+            font-family: 'Andika', sans-serif;
+            font-weight: 700;
+            color: #333;
+        }
+
+        #whatsapp-input label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        #whatsapp_number {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        /* Анимация для кнопок */
+        #start-btn,
+        #ready-btn,
+        #next-btn,
+        #submit-btn {
+            position: relative;
+            overflow: hidden;
+            pointer-events: all;
+        }
+
+        #start-btn::after,
+        #ready-btn::after,
+        #next-btn::after,
+        #submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
+            
+        }
+
+        #start-btn:hover::after,
+        #ready-btn:hover::after,
+        #next-btn:hover::after,
+        #submit-btn:hover::after {
+            left: 0;
+           
+        }
+    
+        #magazine{
+            margin-bottom: 30px;
+            width:450px;
+            height:550px;
+        }
+
+        #magazine .turn-page{
+            background-color:#ccc;
+            background-size:100% 100%;
+        }
+        @media screen and (max-width: 768px){
+            #magazine{
+                width: 400px !important;
+                height: 570px !important;
+            }
+          
+        }
+            
     </style>
 </head>
+
 <body>
-
-    <div class="container">
-        <h1 class="mb-4 text-center">Оқу Тесті</h1>
-
-        <!-- Start Button -->
-        <div class="text-center">
-            <button id="start-btn" class="btn btn-primary btn-lg">Бастау</button>
+    <!-- start: Preloader -->
+    <div class="preloader" style="background-color: #fff;" id="preloader">
+        <div class="preloader-inner">
+            <div class="lines">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+                <span class="line line-4"></span>
+                <span class="line line-5"></span>
+                <span class="line line-6"></span>
+                <span class="line line-7"></span>
+                <span class="line line-8"></span>
+                <span class="line line-9"></span>
+            </div>
+            <div class="text">Жүктелуде</div>
         </div>
+        
+    </div>
+    <!-- end: Preloader -->
 
-        <!-- Stopwatch Display -->
-        <div id="timer" class="text-center text-primary">Уақыт: 0 секунд</div>
+    <!-- start: Mobile Menu -->
+    <div id="tj-overlay-bg2" class="tj-overlay-canvas d-lg-none"></div>
+    <div class="tj-offcanvas-area d-lg-none">
+        <div class="tj-offcanvas-header d-flex align-items-center justify-content-between">
+            <div class="logo-area">
+                <a href="#"><img src="/static/assets/images/logo/white-logo.png" style="width: 35%;;" alt="Logo" /></a>
+            </div>
 
-        <!-- Progress Bar -->
-        <div class="progress" id="progress-bar">
-            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            <div class="offcanvas-icon">
+                <a id="canva_close" href="#">
+                    <i class="fa-light fa-xmark"></i>
+                </a>
+            </div>
         </div>
-
-        <!-- Text Container -->
-        <div id="text-container" class="mt-4">
-            <p id="story-text"></p>
+       
+        <nav class="right_menu_togle mobile-navbar-menu d-lg-none" id="mobile-navbar-menu"></nav>
+        <div class="mobile-contact">
+            <div class="contact-menu">
+                <ul class="dot-style">
+                    <li>
+                        <span><i class="fa-sharp fa-regular fa-envelope"></i></span>
+                        <a href="mailto:Info@gmail.com">Info@gmail.com</a>
+                    </li>
+                    <li>
+                        <span><i class="fa-sharp fa-solid fa-location-dot"></i></span>
+                        <a href="#">Адрес</a>
+                    </li>
+                    <li>
+                        <span><i class="fa-solid fa-phone-volume"></i></span>
+                        <a href="tel:+77076311753">+77076311753</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-
-        <!-- Read Text Display -->
-        <div id="read-text" class="text-center">Прочитанный текст: </div>
-
-        <!-- Ready Button -->
-        <div class="text-center mt-3">
-            <button id="ready-btn" class="btn btn-success" style="display: none;">Дайын</button>
+        <div class="mobile-share">
+            <ul class="dot-style">
+                <li>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                </li>
+            </ul>
         </div>
-
-        <!-- Questions Container -->
-        <div id="questions-container" class="mt-5">
-            <h2 class="mb-4">Тест</h2>
-            <form id="quiz-form">
-                <!-- Questions will be injected here -->
-                 <!-- Add this above the Start Button -->
-                <div class="mb-3">
-                    <label for="tel_number" class="form-label">Телефон номеріңіз:</label>
-                    <input type="text" class="form-control" id="tel_number" name="tel_number" required>
-                </div>
-
-                <button type="submit" id="submit-btn" class="btn btn-primary">Жіберу</button>
-            </form>
+        <div class="header-button">
         </div>
     </div>
+    <!-- end: Mobile Menu -->
 
-    <!-- Bootstrap JS and Dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- start: Header Area -->
+    <header class="tj-header-area header-style-three header-sticky">
+        <div class="container-fluid">
+            <div class="menu-area" >
+                <div class="logo-area">
+                    <div class="logo">
+                        <a href="#"><img src="/static/assets/images/logo/dark-logo.png" style="width:35%;" alt="Logo" /></a>
+                    </div>
+                </div>
+                <div class="tj-menu-area d-lg-block d-none" id="main-menu">
+                    <nav id="mobile-menu">
+                        <ul >
+                            <li>
+                                <a class = "mobile-menu-link" href="#">Басты</a>
+                            </li>
+                            <li>
+                                <a class = "mobile-menu-link" href="#about">Біз туралы</a>
+                            </li>
+                            <li><a class = "mobile-menu-link" href="#contact">Контактілер</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-button d-flex d-none d-lg-block">
+                </div>
+                <div class="tj-canva-two d-lg-none">
+                    <a class="canva_expander nav-menu-link menu-button" href="#">
+                        <span class="dot1"></span>
+                        <span class="dot2"></span>
+                        <span class="dot3"></span>
+                        <span class="dot4"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end: Header Area -->
+    <main class="site-content">
+        <!-- start: Hero Area -->
+        <section class="tj-hero-section-three">
+            <div class="hero-lg-image">
+                <img style="position: relative; left:50px; width: 100%;" src="https://i.pinimg.com/736x/04/e7/87/04e7871c5218eee40258fc800c84730b.jpg" alt="Image" />
+            </div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="hero-content-area" data-sal="slide-up" data-sal-duration="1000"
+                            data-sal-delay="400">
+                            <div class="tj-sec-heading">
+                                <h1 style = "margin-left: 10px;"class="title">
+                                    Fast<span class="-color">Book</span>
+                                </h1>
+                                <div class="desc" style="margin-left:10px;">
+                                    <p>
+                                        Кітап оқу жылдамдығыңызды тексеріңіз - Өзіңізді сынап көріңіз
+                                    </p>
+                                </div>
+                                <div style="margin-left:15px;" class="">
+                                    <button id="">Бастау</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-group-shape">
+                <div class="group-1 shake-y">
+                    <img src="/static/assets/images/shape/shape-55.svg" alt="Shape" />
+                </div>
+                <div class="group-2 pulse">
+                    <img src="/static/assets/images/shape/shape-56.svg" alt="Shape" />
+                </div>
+                <div class="group-3 shake-y">
+                    <img src="/static/assets/images/shape/shape-57.svg" alt="Shape" />
+                </div>
+                <div class="group-4 shake-y">
+                    <img src="/static/assets/images/shape/shape-57.svg" alt="Shape" />
+                </div>
+                <div class="group-5 pulse">
+                    <img src="/static/assets/images/shape/shape-58.svg" alt="Shape" />
+                </div>
+                <div class="group-6 pulse"></div>
+            </div>
+            
+        </section>
+        <!-- end: Hero Area -->
+       
+      
+        <!-- start: About Area -->
+        <section class="tj-about-section-three" id = "about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="about-image-group-three hover-shape-border">
+                            <div class="gradient-shape pulse">
+                                <img src="/static/assets/images/about/about-shape.png" alt="Shape" />
+                            </div>
+                            <div class="image-group-1" data-sal="slide-right" data-sal-duration="1200"
+                                data-sal-delay="600">
+                                <img class="about-lg-image" src="https://s0.rbk.ru/v6_top_pics/media/img/6/21/754598826668216.jpeg" alt="About" />
+                            </div>
+                            <div class="image-group-2" data-sal="slide-left" data-sal-duration="1200"
+                                data-sal-delay="600">
+                                <img class="about-image" src="https://i.pinimg.com/736x/c2/44/e3/c244e38e9599d40309c15188f8b57504.jpg" alt="About" />
+                            </div>
+                            <div class="about-group-shape">
+                                <div class="shape-1 pulse"></div>
+                                <div class="shape-2 shake-y"></div>
+                                <div class="shape-3 pulse"></div>
+                            </div>
+                            <div class="border-shape">
+                                <span class="border-shadow shadow-1"></span>
+                                <span class="border-shadow shadow-2"></span>
+                                <span class="border-shadow shadow-3"></span>
+                                <span class="border-shadow shadow-4"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="about-content-three" data-sal="slide-left" data-sal-duration="1000"
+                            data-sal-delay="600">
+                            <div class="tj-sec-heading">
+                                <span class="secondary-color">Біз туралы</span>
+                                <h2 class="sec-title">Fast Book</h2>
+                                <div class="desc">
+                                    <p>
+                                        "Fast Book" — бұл оқырмандарға оқу жылдамдығын тексеруге және жақсартуға көмектесетін заманауи онлайн-платформа. Біздің мақсатымыз — әр адамның оқу қабілеттерін дамыту және тиімділігін арттыру. Жылдам және түсінікті оқу арқылы жаңа білімге жылдамырақ қол жеткізуге болады, ал біз сізге осы жолда көмек көрсетуге дайынбыз.                                    </p>
+                                </div>
+                                <div class="about-content">
+                                    <div class="about-item">
+                                       
+                                       
+                                    </div>
+                                    <div class="about-item">
+                                        <div class="about-icon hover-shape-border">
+                                            <i class="flaticon-badge"></i>
+                                            <div class="icon-shape">
+                                                <span class="border-shadow shadow-1"></span>
+                                                <span class="border-shadow shadow-2"></span>
+                                                <span class="border-shadow shadow-3"></span>
+                                                <span class="border-shadow shadow-4"></span>
+                                            </div>
+                                        </div>
+                                        <div class="about-text">
+                                            <h5 class="title">Миссиямыз</h5>
+                                            <p>
+                                                баршаға оқу өнерін меңгеруге және өз қабілеттерін жаңа деңгейге көтеруге жағдай жасау.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end: About Area -->
+     
+
+      
     
+    </main>
+    <!-- start: Footer Area -->
+    <footer class="tj-footer-three">
+        <div class="footer-top-area">
+            <div class="container" style="display:flex; justify-content: center; align-items: center;" >
+               
+                <form id="quiz-form">
+                    <div id="magazine">
+                        <div style="background-color: white;">
+                            <div class="book-wrapper" >
+                                <div class="book">
+                                    <div class="book-content"  style="background-image: url('https://canvastemplate.com/demos/writer/images/books/1.png'); background-size: cover;">
+                                        <h1 class="mb-4 text-center">Оқу Тесті</h1>
+                
+                                        <!-- Start Button -->
+                                        <div class="text-center">
+                                            <button id="start-btn">Бастау</button>
+                                        </div>
+                
+                                        <!-- Stopwatch Display -->
+                                    </div>
+                                </div>
+                            </div>
+            
+                        </div>
+                        <div style="background-color: white;">
+                            <div id="timer" class="text-center">Уақыт: 0 секунд</div>
+                            <!-- Text Container -->
+                            <div id="text-container" style="display: none;">
+                                <p id="story-text"></p>
+                            </div>
+                            <div class="text-center" style = "height: 20%;">
+                                <button id="ready-btn" style="display: none;">Дайын</button>
+                            </div>
+                            <!-- Ready Button -->
+                        </div>
+
+                        <div style="background-color: white;">
+                            <div id="question-container" style="display: none;">
+                                <h2 class="mb-4 text-center">Тест</h2>
+                                
+                                    <!-- Questions will be injected here -->
+                                    <div id="question-content"></div>
+
+                                    <!-- Кнопка "Келесі" внутри блока теста -->
+                                    <div id="next-button" class="text-center">
+                                        <button type="button" id="next-btn">Келесі</button>
+                                    </div>
+
+                                    <!-- WhatsApp Number Input -->
+                                    <div id="whatsapp-input" style="display: none;">
+                                        <div class="mb-3">
+                                            <label for="whatsapp_number" class="form-label">WhatsApp номеріңіз:</label>
+                                            <input type="text" id="whatsapp_number" name="whatsapp_number" required>
+                                        </div>
+                                        <!-- Кнопка "Жіберу" внутри блока WhatsApp -->
+                                        <div class="text-center">
+                                            <button type="submit" id="submit-btn">Жіберу</button>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                 
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="sidebar-wrapper">
+           
+            
+            <div class="blog-video-area">
+               
+                <div class="row video-box">
+                    <span class="col-lg-2 "></span>
+                    <div class="col-lg-8 col-12 p-4">
+                        <div class="video-image">
+                            <img src="https://vogazeta.ru/uploads/full_size_1634038683-d8429e49ab180e630e474ce85290f5c2.jpg" alt="Image">
+                            <div class="video-play">
+                                <a class="venobox popup-videos-button" data-autoplay="true" data-vbtype="video" href="https://www.youtube.com/watch?v=ADmQTw4qqTY">
+                                    <i class="fa-sharp fa-solid fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                
+            </div>
+        
+        </div>
+        <div class="footer-menu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="footer-widget footer1-col-1">
+                            <div class="footer-content-info">
+                                <div class="footer-logo row" style="max-width:1000px !important;">
+                                    <a href="#" class="col-2">
+                                        <img src="/static/assets/images/logo/white-logo.png" alt="Logo" />
+                                    </a>
+                                    <h4 class="title d-flex col-6" style="align-items: center; color:white;">Fast Book</h4>
+                                </div>
+                                <p>
+                                    Біздің сервис оқудың тиімділігін арттыруға көмектеседі.<br> Әрбір оқушы мен маманға жылдамдықты арттырудың маңыздылығын түсінуге мүмкіндік береміз.
+                                </p>
+                                <div class="footer-share">
+                                    <ul class="dot-style">
+                                        <li>
+                                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://wa.me/+77076311753"><i class="fa-brands fa-whatsapp"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-6 col-md-6 col-sm-6" id = "contact">
+                        <div class="footer-widget footer1-col-5">
+                            <h4 class="footer_title">Контактілер</h4>
+                            <div class="widget_contact_menu">
+                                <div class="footer-menu">
+                                    <ul>
+                                        <li>
+                                            <span><i class="fa-sharp fa-regular fa-envelope"></i></span>
+                                            <a href="mailto:Info@gmail.com">Info@gmail.com</a>
+                                        </li>
+                                        <li>
+                                            <span><i class="fa-solid fa-globe"></i></span><a
+                                                href="#">fastbook.kz</a>
+                                        </li>
+                                        <li>
+                                            <span><i class="fa-sharp fa-solid fa-location-dot"></i></span>
+                                            <a href="#">Адрес</a>
+                                        </li>
+                                        <li>
+                                            <span><i class="fa-solid fa-phone-volume"></i></span>
+                                            <a href="tel:+77076311753">+77076311753</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="footer-sec-shape">
+            <div class="shape-1 pulse">
+                <img src="/static/assets/images/shape/footer-shape-1.svg" alt="Images" />
+            </div>
+           
+            <div class="shape-3 shake-y">
+                <img src="/static/assets/images/shape/footer-shape-3.svg" alt="Images" />
+            </div>
+            <div class="shape-4 shake-y">
+                <img src="/static/assets/images/shape/footer-shape-4.svg" alt="Images" />
+            </div>
+            <div class="shape-5 shake-y" data-sal="slide-left" data-sal-duration="1000" data-sal-delay="300">
+                <img src="/static/assets/images/shape/footer-shape-5.svg" alt="Images" />
+            </div>
+        </div>
+    </footer>
+    <!-- end: Footer Area -->
+
+    <!-- start: Scroll Area -->
+    <div class="webency-scroll-top">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="
+                        transition: stroke-dashoffset 10ms linear 0s;
+                        stroke-dasharray: 307.919px, 307.919px;
+                        stroke-dashoffset: 71.1186px;
+                    "></path>
+        </svg>
+        <div class="webency-scroll-top-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em"
+                viewBox="0 0 24 24" data-icon="mdi:arrow-up" class="iconify iconify--mdi">
+                <path fill="currentColor" d="M13 20h-2V8l-5.5 5.5l-1.42-1.42L12 4.16l7.92 7.92l-1.42 1.42L13 8v12Z">
+                </path>
+            </svg>
+        </div>
+    </div>
+    <!-- end: Scroll Area -->
+
+    <!-- JS here -->
+    <script src="/static/assets/js/jquery.min.js"></script>
+    <script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/assets/js/meanmenu.js"></script>
+    <script src="/static/assets/js/swiper.min.js"></script>
+    <script src="/static/assets/js/jquery.appear.min.js"></script>
+    <script src="/static/assets/js/sal.js"></script>
+    <script src="/static/assets/js/odometer.min.js"></script>
+    <script src="/static/assets/js/imagesloaded-pkgd.js"></script>
+    <script src="/static/assets/js/magnific-popup.js"></script>
+    <script src="/static/assets/js/isotope.pkgd.min.js"></script>
+    <script src="/static/assets/js/validate.min.js"></script>
+
+    <script src="/static/assets/js/main.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="http://turnjs.com/catalog/assets/js/turn.min.js"> </script>
     <script>
-        // Function to get CSRF token from hidden input
+        let allowTurning = false;
+        $(window).ready(function() {
+            $('#magazine').turn({
+            
+            display: 'single',
+            acceleration: true,
+            gradients: !$.isTouch,
+            elevation:50,
+            when: {
+                turning: function(event, page, view) {
+                        if (!allowTurning) {
+                            event.preventDefault(); 
+                        }
+                },
+                turned: function(e, page) {
+                    allowTurning = false;
+                }
+            }
+            });
+        });
+	
+        const $mobileMenulinks = $('.mobile-menu-link');
+        
+        $mobileMenulinks.on('click', function (e) {
+            $('body').removeClass('canvas_expanded');
+        });
         function getCSRFToken() {
             const csrfToken = document.querySelector('[name=csrf-token]').getAttribute('content');
             return csrfToken;
         }
 
-        // Fetch Test Data from the Server
         async function fetchTestData() {
             try {
                 const response = await fetch('/get_text_and_questions/', {
@@ -136,131 +735,112 @@
             }
         }
 
-        // Initialize the Quiz Form with Questions
-        function initializeQuestions(data) {
-            data.questions.forEach((q) => {
-                let questionHtml = `<div class="question" data-question-id="${q.id}">
-                                        <h5>${q.id}. ${q.question}</h5>`;  // Use q.id for the question number
-                q.answers.forEach(a => {
-                    questionHtml += `<div class="form-check">
-                                        <input class="form-check-input" type="radio" name="question_${q.id}" id="q${q.id}_a${a.id}" value="${a.id}" required>
-                                        <label class="form-check-label" for="q${q.id}_a${a.id}">
-                                            ${a.answer}
-                                        </label>
-                                     </div>`;
-                });
-                questionHtml += `</div>`;
-                $('#quiz-form').append(questionHtml);
-            });
-        }
-        
-
         let timerInterval;
         let secondsElapsed = 0;
         let testData = {};
-
-        $(document).ready(function() {
-            // Fetch test data from the server
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+        
+        $(document).ready(function () {
             fetchTestData().then(data => {
                 if (data) {
                     testData = data;
                     $('#story-text').text(data.text);
-                    initializeQuestions(data);
                 }
             });
 
-            // Start Button Click
-            $('#start-btn').click(function() {
+            $('#start-btn').click(function () {
                 $(this).fadeOut();
+                allowTurning = true;
+                $('#magazine').turn('next');
                 $('#text-container').fadeIn();
                 $('#ready-btn').fadeIn();
                 $('#progress-bar').fadeIn();
                 startTimer();
             });
 
-            // Ready Button Click
-            $('#ready-btn').click(function() {
+            $('#ready-btn').click(function () {
                 stopTimer();
-                let readText = getTextUpToVisible();
-                $('#read-text').text('Прочитанный текст: ' + readText);
+                allowTurning = true;
+                $('#magazine').turn('next');
                 $('#text-container').fadeOut();
                 $('#ready-btn').fadeOut();
                 $('#progress-bar').fadeOut();
-                $('#questions-container').fadeIn();
+                showQuestion();
             });
 
-            // Form Submission
-            $('#quiz-form').submit(function(event) {
-                event.preventDefault();
-        
-                let answers = {};
-        
-                // Loop over each question div and get the data-question-id and selected answer
-                $('.question').each(function() {
-                    let questionId = $(this).data('question-id');  // Correctly retrieve the data-question-id
-                    let selectedAnswer = $(this).find('input[type="radio"]:checked').val();
-                    
-                    if (questionId && selectedAnswer) {
-                        answers[parseInt(questionId)] = [parseInt(selectedAnswer)];  // Store the selected answer as a list
-                    }
-                });
-
-                // Collect telephone number if needed
-                // Uncomment the following lines if you add a telephone number input
-               
-                let tel_number = $('#tel_number').val();
-                if (!tel_number) {
-                    alert('Телефон номеріңізді енгізіңіз.');
+            $('#next-btn').click(function () {
+                
+                let questionId = testData.questions[currentQuestionIndex].id;
+                let selectedAnswer = $('input[name="question_option"]:checked').val();
+                if (selectedAnswer) {
+                    userAnswers[questionId] = [parseInt(selectedAnswer)];
+                } else {
+                    alert('Жауапты таңдаңыз.');
                     return;
                 }
-        
+                currentQuestionIndex++; 
+                if (currentQuestionIndex < testData.questions.length) {
+                    showQuestion();
+                    $('#magazine').turn('next');
+                } else {
+                    $('#question-content').hide();
+                    $('#next-button').hide(); 
+                    $('#whatsapp-input').show();
+                }
+    
+            });
 
-                // Prepare data to send
+            $('#quiz-form').submit(function (event) {
+                event.preventDefault();
+
+                let whatsappNumber = $('#whatsapp_number').val();
+                if (!whatsappNumber) {
+                    alert('WhatsApp номеріңізді енгізіңіз.');
+                    return;
+                }
+
                 let payload = {
                     id: testData.id,
                     text: testData.text,
-                    tel_number: tel_number, // Collect if needed
+                    whatsapp_number: whatsappNumber,
                     time: secondsElapsed,
-                    answers: answers
+                    answers: userAnswers
                 };
 
-                // Retrieve CSRF token from hidden input
                 const csrfToken = getCSRFToken();
 
-                // Send data to server
                 fetch('/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRFToken': csrfToken // For Django
+                        'X-CSRFToken': csrfToken
                     },
                     body: JSON.stringify(payload),
-                    credentials: 'same-origin' // Include cookies
+                    credentials: 'same-origin'
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Жауапты жіберу кезінде қате орын алды.');
-                    }
-                    return response.json();
-                })
-                .then(responseData => {
-                    // Display success message
-                    $('body').html(`
-                        <div class="container text-center">
-                            <h2 class="mt-5">Рахмет!</h2>
-                            <p>Сіздің жауабыңыз қабылданды!</p>
-                        </div>
-                    `);
-                    console.log(responseData);
-                })
-                .catch(error => {
-                    alert('Қате: ' + error.message);
-                    console.error('Қате:', error);
-                });
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Жауапты жіберу кезінде қате орын алды.');
+                        }
+                        return response.json();
+                    })
+                    .then(responseData => {
+                        $('.book-content').html(`
+                            <div class="container text-center" style="padding: 100px 0;">
+                                <h2 class="mt-5">Рахмет!</h2>
+                                <p>Сіздің жауабыңыз қабылданды!</p>
+                            </div>
+                        `);
+                        console.log(responseData);
+                    })
+                    .catch(error => {
+                        alert('Қате: ' + error.message);
+                        console.error('Қате:', error);
+                    });
             });
         });
 
-        // Timer Functions
         function startTimer() {
             timerInterval = setInterval(() => {
                 secondsElapsed++;
@@ -272,48 +852,33 @@
             clearInterval(timerInterval);
         }
 
-        // Scroll Tracking Functions with Progress Bar
-        function getTextUpToVisible() {
-            let container = document.getElementById('text-container');
-            let textElement = document.getElementById('story-text');
+        function showQuestion() {
+            $('#question-container').fadeIn();
+            let questionData = testData.questions[currentQuestionIndex];
+            
+            if (questionData) {
+                let questionHtml = `<div class="question mb-4">
+                                        <h5>${currentQuestionIndex + 1}. ${questionData.question}</h5>`;
+                questionData.answers.forEach(a => {
+                    questionHtml += `<div class="form-check">
+                                        <input class="form-check-input" type="radio" name="question_option" id="option_${a.id}" value="${a.id}" required>
+                                        <label class="form-check-label" for="option_${a.id}">
+                                            ${a.answer}
+                                        </label>
+                                     </div>`;
+                });
+                questionHtml += `</div>`;
+                $('#question-content').append(questionHtml)
 
-            // Current scroll position
-            let scrollTop = container.scrollTop;
-            let visibleHeight = container.clientHeight;
-
-            // Total height of the text
-            let totalHeight = textElement.scrollHeight;
-
-            // Proportion scrolled
-            let percentScrolled = (scrollTop + visibleHeight) / totalHeight;
-            percentScrolled = Math.min(percentScrolled, 1); // Ensure it doesn't exceed 1
-
-            // Get full text
-            let fullText = textElement.innerText;
-
-            // Calculate number of characters
-            let visibleChars = Math.floor(fullText.length * percentScrolled);
-
-            // Update progress bar
-            updateProgressBar(percentScrolled * 100);
-
-            // Return the visible part of the text
-            return fullText.slice(0, visibleChars);
+                $('#next-button').show();
+                $('#whatsapp-input').hide();
+            } else {
+                $('#question-content').hide();
+                $('#next-button').hide(); 
+                $('#whatsapp-input').show();
+            }
         }
-
-        // Update progress bar
-        function updateProgressBar(percentage) {
-            $('.progress-bar').css('width', `${percentage}%`);
-            $('.progress-bar').attr('aria-valuenow', percentage);
-            $('.progress-bar').text(`${Math.floor(percentage)}%`);
-        }
-
-        // Update read text and progress bar on scroll
-        $('#text-container').on('scroll', function() {
-            let readText = getTextUpToVisible();
-            $('#read-text').text('Прочитанный текст: ' + readText);
-        });
     </script>
-
 </body>
+
 </html>
