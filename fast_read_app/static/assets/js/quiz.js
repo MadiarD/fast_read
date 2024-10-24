@@ -1,16 +1,17 @@
-$('document').ready(function() {
     
 
     let allowTurning = false;
     
     const $mobileMenulinks = $('.mobile-menu-link');
+    
+
     function turn_page(selected = false,questionId = 0){
         if (selected == false){
             allowTurning = true;
             $('#magazine').turn('next');
         }
         else {
-            let selectedAnswer = $(`input[name=f{selected}]:checked`).val();
+            let selectedAnswer = $(`input[name=${selected}]:checked`).val();
             if (selectedAnswer !== undefined) {
                 userAnswers[questionId] = [parseInt(selectedAnswer)];
                 allowTurning = true;
@@ -225,4 +226,4 @@ $('document').ready(function() {
             $('#next-button').show();
         }
     }
-});
+
